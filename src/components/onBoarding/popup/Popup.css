@@ -1,0 +1,19 @@
+@import '../../../index.css';
+
+.popup {
+
+    @apply rounded-xl bg-white opacity-100 relative px-4 pb-5 max-w-[535px] flex flex-col items-center text-center;
+
+    .logo {
+
+        @apply h-29.5 w-29.5 rounded-full absolute -top-15 left-1/2 -translate-x-1/2 bg-[#E0E9C2] flex items-center justify-center;
+
+        img {
+
+            @apply h-15;
+
+        }
+
+    }
+
+}

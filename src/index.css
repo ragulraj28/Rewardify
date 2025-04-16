@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+
+    --color-primary: linear-gradient(to right, #668D12, #ACC43F);
+    --color-secondary: #030401;
+    --color-tertiary: #868C9A;
+    --color-border-color: #E0E0E0;
+    --color-placeholder-text: #BEBEBE;
+}
+
+:root {
+
+    --primary : linear-gradient(to right, #668D12, #ACC43F);
+    --secondary: #030401;
+    --tertiary: #868C9A;
+
+}
+
+@utility bg-gradient {
+
+    background: linear-gradient(to right, #668D12, #ACC43F);
+    
+}
+
+@utility primary-text {
+
+    background-image: linear-gradient(to right, #668D12, #ACC43F);
+    background-clip: text;
+    color: transparent;
+
+}

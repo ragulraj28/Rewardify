@@ -1,0 +1,52 @@
+@import '../../../index.css';
+
+.btn {
+
+    @apply py-3.5 px-5 flex items-center justify-center gap-1 text-center w-full rounded-lg text-lg outline-none;
+
+    /* padding: 14px 20px;
+    text-align: center;
+    border-radius: 8px;
+    width: 100%; */
+
+    span {
+
+        @apply inline-block font-medium;
+
+    }
+
+    &.fill {
+
+        @apply font-semibold text-white bg-gradient;
+
+        /* background: var(--primary);
+        font-weight: 600;
+        font-size: 18px;
+        color: white; */
+    }
+
+    &.outline {
+
+        @apply rounded-lg py-3;
+
+        position: relative;
+        background: linear-gradient(white, white) padding-box,
+        linear-gradient(to right, #668D12, #ACC43F) border-box;
+        border: 2px solid transparent;
+
+        span {
+
+            @apply primary-text;
+
+        }
+
+    }
+
+    &.disabled {
+
+        @apply cursor-not-allowed bg-[#E1E1E1] text-[#868C9A];
+
+    }
+
+
+}
