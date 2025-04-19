@@ -1,0 +1,13 @@
+@import '../../../../index.css';
+
+.checkbox-input {
+
+    @apply flex items-center gap-2 text-tertiary text-xs mb-1 last:mb-0 py-1;
+
+    input {
+
+        @apply !h-4 !w-4 !mb-0;
+
+    }
+
+}

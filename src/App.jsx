@@ -9,6 +9,7 @@ import Products from './components/products/Products'
 import { Provider } from 'react-redux'
 import store from './utils/store/store'
 import ProtectedRoute from './utils/protectedRoute/ProtectedRoute'
+import RegisterStore from './components/onBoarding/registerStore/RegisterStore'
 
 const App = () => {
   return(
@@ -18,6 +19,7 @@ const App = () => {
           <Route index element={<Login />}/>
           <Route path='contact-us' element={<Contact />}/>
           <Route element={<ProtectedRoute />}>
+            <Route path='register-store' element={<RegisterStore />}/>
             <Route path='dashboard' element={<Dashboard />}/>
             <Route path='orders' element={<Orders />}/>
             <Route path='products' element={<Products />}/>

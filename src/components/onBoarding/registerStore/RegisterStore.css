@@ -1,0 +1,203 @@
+@import '../../../index.css';
+
+.register-store {
+
+    @apply container mx-auto px-5 pt-29 pb-13;
+
+    .page-sub-title {
+
+        @apply text-secondary text-2xl font-semibold mb-5;
+
+    }
+
+    .page-title, .excerpt {
+
+        @apply text-center max-w-md w-full mx-auto;
+
+    }
+
+    .content-wrapper {
+
+        @apply flex flex-col lg:flex-row gap-17 justify-between;
+
+        .sidebar {
+
+            @apply flex lg:flex-col max-w-[326px] w-full border-r border-border-color pr-8;
+
+            .step {
+
+                @apply ml-11 pb-5 border-b border-border-color text-tertiary relative mb-6 last:mb-0 last:border-none;
+
+                .step-tagline {
+
+                    @apply text-xs mb-2;
+
+                }
+
+                .step-title {
+
+                    @apply font-medium mb-1;
+
+                }
+
+                .step-excerpt {
+
+                    @apply text-xs;
+
+                }
+
+                &:before {
+
+                    @apply absolute top-0.5 -left-11 content-[""] h-4 w-4 rounded-full bg-tertiary;
+
+                }
+
+                &.active {
+
+                    .step-title {
+
+                        @apply text-secondary;
+
+                    }
+
+                    &:before {
+
+                        @apply bg-[#45C676];
+    
+                    }
+
+                }
+
+            }
+
+        }
+
+        .form-wrapper {
+
+            @apply w-full;
+
+            .card-wrapper {
+
+                @apply w-full border border-border-color rounded-xl px-5 py-5.5;
+
+                .card-header {
+
+                    @apply mb-4;
+
+                    .card-title {
+    
+                        @apply text-lg font-medium mb-1.5;
+        
+                    }
+                    
+                }
+
+                .card-excerpt {
+
+                    @apply text-xs text-tertiary mb-2.5;
+
+                    a {
+
+                        @apply text-secondary;
+
+                    }
+
+                }
+
+                .card-footer {
+
+                    @apply mt-6 pt-6 border-t-2 border-dashed border-border-color;
+
+                }
+
+                input { 
+
+                    @apply w-full outline-none border border-border-color rounded-md py-4 px-3 mb-2.5 last:mb-0;
+
+                }
+
+                .verify-input {
+
+                    @apply flex items-center border border-border-color rounded-md pr-3.5;
+
+                    input {
+
+                        @apply border-none mb-0;
+
+                    }
+
+                    .verify-btn {
+
+                        @apply outline-none border-none text-red-500 text-sm;
+
+                    }
+
+                }
+
+                .verify-input + input {
+
+                    @apply mt-2.5;
+
+                }
+
+                .time-input {
+
+                    @apply flex items-center gap-2 text-placeholder-text px-2.5 rounded-full border border-border-color;
+
+                    input {
+
+                        @apply border-none w-17 py-2.5 px-0;
+
+                    }
+
+                } 
+    
+            }
+
+            .card-wrapper + .card-wrapper {
+
+                @apply mt-7;
+
+            }
+
+            .btn {
+
+                @apply mt-7;
+
+            }
+
+            .store-information, .store-document {
+
+                @apply max-w-[362px] w-full;
+
+            }
+
+            .agreement {
+
+                @apply max-w-[547px] w-full;
+
+                .page-sub-title {
+        
+                    @apply mb-2.5;
+        
+                }
+        
+                .excerpt {
+        
+                    @apply text-left mb-6 mx-0;
+        
+                }
+        
+                .checkbox-input {
+        
+                    @apply mt-5 mb-10 text-secondary text-lg;
+        
+                }
+        
+            }
+
+        }
+
+    }
+
+}

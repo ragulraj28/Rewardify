@@ -3,8 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     accessToken: localStorage.getItem('accessToken') || null,
     refreshToken: localStorage.getItem('refreshToken') || null,
-    isOrganizationUser : JSON.parse(localStorage.getItem('isOrganizationUser')) || false,
+    isOrganizationUser : false || JSON.parse(localStorage.getItem('isOrganizationUser')),
     stores : JSON.parse(localStorage.getItem('stores')) || [],
+    selectedStore: localStorage.getItem('selectedStore') || null,
 };
 
 const authSlice = createSlice({
@@ -23,10 +24,17 @@ const authSlice = createSlice({
             localStorage.setItem('stores', JSON.stringify(stores));
         },
 
-        // setUser: (state, action) => {
-        //     state.user = action.payload;
-        //     localStorage.setItem('user', JSON.stringify(action.payload));
-        // },
+        setStore: (state, action) => {            
+            state.selectedStore = action.payload;
+            localStorage.setItem('selectedStore', JSON.stringify(action.payload));
+        },
+
+        setOrganizationTokens: (state, action) => {
+            state.accessToken = action.payload.accessToken;
+            state.refreshToken = action.payload.refreshToken;
+            localStorage.setItem('accessToken', action.payload.accessToken);
+            localStorage.setItem('refreshToken', action.payload.refreshToken);
+        },
 
         logout: (state) => {
             state.accessToken = null;
@@ -37,5 +45,5 @@ const authSlice = createSlice({
     }
 });
 
-export const { setTokens, logout } = authSlice.actions;
+export const { setTokens, setStore, setOrganizationTokens, logout } = authSlice.actions;
 export default authSlice.reducer;

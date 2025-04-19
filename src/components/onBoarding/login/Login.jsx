@@ -11,23 +11,24 @@ import StoreCard from "../storeCard/StoreCard";
 import { useNavigate } from "react-router";
 import { GENERATE_OTP_URL, LOGIN_URL } from "../../../utils/axios/apiURL";
 import { useDispatch, useSelector } from "react-redux";
-import { setTokens } from "../../../utils/slices/authSlice";
+import { setOrganizationTokens, setStore, setTokens } from "../../../utils/slices/authSlice";
 
 const Login = () => {
-  const { accessToken, isOrganizationUser, stores } = useSelector(state => state.auth);
+  const { accessToken, stores } = useSelector(state => state.auth);
   const [screen, setScreen] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState(Array(4).fill(""));
   const [secondsLeft, setSecondsLeft] = useState(null);
+  const[selectedStore, setSelectedStore] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();  
-
+  
   // Check if user is already authenticated and navigate to the correct page
   useEffect(() => {
     if (accessToken) {
-      authNavigation(isOrganizationUser, stores);
-    }
-  }, [accessToken, isOrganizationUser, stores]);
+      authNavigation(stores);
+    }    
+  }, [accessToken, stores]);
 
   useEffect(() => {
     if (screen === "otp" && secondsLeft === null) setSecondsLeft(55);
@@ -37,12 +38,29 @@ const Login = () => {
     return () => clearInterval(timer);
   }, [screen, secondsLeft]);
 
-  const authNavigation = (isOrganizationUser, stores) => {
-    if (isOrganizationUser) {
-      stores.length > 0 && stores.length < 2 ? navigate('dashboard') : setScreen('store');     
+  const authNavigation = (stores) => {
+    
+    if (stores.length > 0) {
+
+      if(stores.length < 2) {
+        
+        setSelectedStore(stores[0]);
+        dispatch(setStore(stores[0]));
+        organizationUserToken();
+        navigate('dashboard');
+
+      } else {
+        
+        setScreen('store');
+
+      }
+
     } else {
+
       setScreen('noStore');
+
     }
+
   }
 
   const generateOTP = async () => {
@@ -70,17 +88,35 @@ const Login = () => {
       );
       const { token, refreshToken, isOrganizationUser, stores = [] } = response.data;
       dispatch(setTokens({ accessToken: token, refreshToken, isOrganizationUser, stores }));  
-      authNavigation(isOrganizationUser, stores);
+      authNavigation(stores);
     } catch (error) {
       console.error(error);
     }
   };
+
+  const organizationUserToken = async () => {
+    try {
+      const response = await api.post('/v1/store-user/auth/generateToken/',{
+        store: selectedStore?._id
+      })
+      dispatch(setOrganizationTokens({accessToken: response.data.token, refreshToken: response.data.refreshToken}));
+      
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   const handleResend = () => {
     generateOTP();
     setSecondsLeft(55);
   };
 
+  const storeHandler = () => {
+    dispatch(setStore(selectedStore));
+    organizationUserToken();
+    navigate('dashboard');
+  } 
+  
   const renderContent = () => {
     switch (screen) {
       case "phone":
@@ -146,7 +182,7 @@ const Login = () => {
               "Enter your account details correctly or register your store with us"
             }
           >
-            <Button btnText={"Register your store with us"} btnStyle="fill" />
+            <Button btnText={"Register your store with us"} btnStyle="fill" onClick={() => navigate('register-store')}/>
             <Button
               btnText={"Login with different account"}
               btnStyle="outline"
@@ -162,9 +198,9 @@ const Login = () => {
             title={"Select Your Store"}
             excerpt={"Your Number is connect with 2 stores"}
           >
-            <StoreCard />
-            <StoreCard />
-            <Button btnText={"Continue"} btnStyle="fill" />
+            {stores?.map(data => <StoreCard key={data?._id} storeData={data} selected={selectedStore?._id === data?._id} setSelectedStore={setSelectedStore}/>)}
+
+            <Button btnText={"Continue"} btnStyle={`${selectedStore ? 'fill' : 'disabled'}`} onClick={() => selectedStore && storeHandler()}/>
           </LoginCard>
         );
 

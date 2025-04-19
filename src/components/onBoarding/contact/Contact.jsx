@@ -7,6 +7,7 @@ import popupLogo from '../../../assets/handshake.svg'
 import { ChevronIcon, PhoneIcon, WhatsappIcon } from '../../../assets/icons/icon';
 import { useRef, useState } from 'react';
 import { usePopup } from '../../../utils/popupContext/PopupContext';
+import { useNavigate } from 'react-router';
 
 const Card = ({title, excerpt, children}) => {
     return(
@@ -40,6 +41,7 @@ const Contact = () => {
     })
 
     const { showPopup, hidePopup } = usePopup();
+    const navigate = useNavigate();
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -84,7 +86,7 @@ const Contact = () => {
 
             }
             <Card title={"Enter Store details"} excerpt={"Enter details Manually to get started into REWARDIFY"}>
-                <Button btnText={'Get Started'} icon={<ChevronIcon />} iconPosition='right'/>
+                <Button btnText={'Get Started'} icon={<ChevronIcon />} iconPosition='right' onClick={() => navigate('/register-store')}/>
             </Card>
         </div>
     </div>
