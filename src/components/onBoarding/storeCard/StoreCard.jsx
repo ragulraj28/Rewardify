@@ -5,7 +5,7 @@ const StoreCard = ({selected, storeData, setSelectedStore}) => {
   const{_id, name, images, address } = storeData;  
   
   return (
-    <div className='store-card' onClick={() => setSelectedStore(storeData)}>
+    <div className={`store-card ${selected && 'active'}`} onClick={() => setSelectedStore(storeData)}>
         <figure>
             <img src={images[0]} alt={name} />
         </figure>

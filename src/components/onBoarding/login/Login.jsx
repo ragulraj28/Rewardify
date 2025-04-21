@@ -12,6 +12,7 @@ import { useNavigate } from "react-router";
 import { GENERATE_OTP_URL, LOGIN_URL } from "../../../utils/axios/apiURL";
 import { useDispatch, useSelector } from "react-redux";
 import { setOrganizationTokens, setStore, setTokens } from "../../../utils/slices/authSlice";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
   const { accessToken, stores } = useSelector(state => state.auth);
@@ -21,7 +22,8 @@ const Login = () => {
   const [secondsLeft, setSecondsLeft] = useState(null);
   const[selectedStore, setSelectedStore] = useState(null);
   const navigate = useNavigate();
-  const dispatch = useDispatch();  
+  const dispatch = useDispatch();
+  const { register, handleSubmit, formState:{ errors} } = useForm();
   
   // Check if user is already authenticated and navigate to the correct page
   useEffect(() => {
@@ -63,11 +65,11 @@ const Login = () => {
 
   }
 
-  const generateOTP = async () => {
+  const generateOTP = async (data) => {   
     try {
       await api.post(GENERATE_OTP_URL, {
         dialCode: 91,
-        contactNo: phoneNumber,
+        contactNo: data.phoneNumber,
       });
       setScreen("otp");
     } catch (error) {
@@ -115,7 +117,7 @@ const Login = () => {
     dispatch(setStore(selectedStore));
     organizationUserToken();
     navigate('dashboard');
-  } 
+  }
   
   const renderContent = () => {
     switch (screen) {
@@ -126,18 +128,23 @@ const Login = () => {
             title={"Get started with REWARDIFY"}
             excerpt={"Enter your mobile number or Shop ID to get started"}
           >
-            <input
-              className="phone-input"
-              type="phone"
-              placeholder="Enter shop ID / Mobile Number"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-            />
-            <Button
-              btnText={"Send OTP"}
-              btnStyle={`${phoneNumber.length >= 10 ? "fill" : "disabled"}`}
-              onClick={() => phoneNumber.length >= 10 && generateOTP()}
-            />
+            <form className="w-full">
+              <div className="input-wrapper">
+                <input
+                  className="phone-input"
+                  placeholder="Enter shop ID / Mobile Number"
+                  {...register("phoneNumber", {required: "Phone number is required" ,pattern: {value: /^\+?\d{10,15}$/, message: "Enter a valid phone number"}})}
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                />
+                {errors.phoneNumber && <p className="form-error">{errors.phoneNumber.message}</p>}
+              </div>
+              <Button
+                btnText={"Send OTP"}
+                btnStyle={`${phoneNumber.length >= 10 ? "fill" : "disabled"}`}
+                onClick={handleSubmit(generateOTP)}
+              />
+            </form>
             <p className="btn-excerpt excerpt">
               By clicking, you agree to our <a href="#">Terms & Conditions</a>{" "}
               and <a href="#">Privacy Policy.</a>

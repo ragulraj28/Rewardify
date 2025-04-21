@@ -18,15 +18,15 @@
 
     .content-wrapper {
 
-        @apply flex flex-col lg:flex-row gap-17 justify-between;
+        @apply flex flex-col lg:flex-row lg:gap-17 gap-12 justify-between;
 
         .sidebar {
 
-            @apply flex lg:flex-col max-w-[326px] w-full border-r border-border-color pr-8;
+            @apply hidden sm:flex lg:flex-col lg:max-w-[326px] w-full lg:border-r border-border-color pr-8;
 
             .step {
 
-                @apply ml-11 pb-5 border-b border-border-color text-tertiary relative mb-6 last:mb-0 last:border-none;
+                @apply ml-11 lg:pb-5 lg:border-b border-border-color text-tertiary relative lg:mb-6 last:mb-0 last:border-none;
 
                 .step-tagline {
 
@@ -168,13 +168,13 @@
 
             .store-information, .store-document {
 
-                @apply max-w-[362px] w-full;
+                @apply lg:max-w-[362px] w-full;
 
             }
 
             .agreement {
 
-                @apply max-w-[547px] w-full;
+                @apply lg:max-w-[547px] w-full;
 
                 .page-sub-title {
         

@@ -5,9 +5,11 @@ import Button from '../../common/button/Button';
 import Popup from '../popup/Popup';
 import popupLogo from '../../../assets/handshake.svg'
 import { ChevronIcon, PhoneIcon, WhatsappIcon } from '../../../assets/icons/icon';
-import { useRef, useState } from 'react';
+import api from '../../../utils/axios/axios';
 import { usePopup } from '../../../utils/popupContext/PopupContext';
 import { useNavigate } from 'react-router';
+import { set, useForm } from 'react-hook-form';
+import { useState } from 'react';
 
 const Card = ({title, excerpt, children}) => {
     return(
@@ -32,21 +34,30 @@ const popup = (hidePopup) => {
 
 const Contact = () => {
 
-    const[isSubmitted, setIsSubmitted] = useState(false);
-    const contactDetails = useRef({
-        ownerName : null,
-        shopName : null,
-        location : null,
-        phoneNumber : null
-    })
+    const { register, handleSubmit, formState:{ errors, isSubmitting}} = useForm();
 
     const { showPopup, hidePopup } = usePopup();
+    const[isSubmitted, setIsSubmitted] = useState(false);
     const navigate = useNavigate();
 
-    const submitHandler = (e) => {
-        e.preventDefault();
-        setIsSubmitted(true);
-        showPopup(popup(hidePopup));
+    const submitHandler = async (data) => {        
+        
+        try {
+
+            await api.post('v1/store-user/contact-form', {
+                contactNo: Number(data.phoneNumber),
+                dialcode: 91,
+                location: data.shopLocation,
+                ownerName: data.ownerName,
+                shopName: data.shopName
+            });
+            setIsSubmitted(true);
+            showPopup(popup(hidePopup));            
+
+        } catch(err) {
+            console.error(err);
+        }
+       
     }
 
   return (
@@ -73,14 +84,26 @@ const Contact = () => {
                 <div className="form-wrapper">
                     <form>
                         <label>Owner Name</label>
-                        <input type="text" placeholder='Enter Your Full Name' ref={el => contactDetails.current.ownerName = el}/>
+                        <div className="input-wrapper">
+                            <input {...register("ownerName", {required: "Owner name is required"})} placeholder='Enter Your Full Name'/>
+                            {errors.ownerName && <p className="form-error">{errors.ownerName.message}</p>}
+                        </div>
                         <label>Shop Name</label>
-                        <input type="text" placeholder='Enter the Shop Name' ref={el => contactDetails.current.shopName = el}/>
+                        <div className="input-wrapper">
+                            <input {...register("shopName", {required: "Shop name is required"})} placeholder='Enter the Shop Name'/>
+                            {errors.shopName && <p className="form-error">{errors.shopName.message}</p>}
+                        </div>                       
                         <label>Location</label>
-                        <input type="text" placeholder='Enter your Location(eg: Indiranagar, Bangalore)' ref={el => contactDetails.current.location = el}/>
+                        <div className="input-wrapper">
+                            <input {...register("shopLocation", {required: "Shop location is required"})} placeholder='Enter your Location(eg: Indiranagar, Bangalore)'/>
+                            {errors.shopLocation && <p className="form-error">{errors.shopLocation.message}</p>}
+                        </div>
                         <label>Phone Number</label>
-                        <input type="text" placeholder='Enter Your Phone Number' ref={el => contactDetails.current.phoneNumber = el}/>
-                        <Button btnText={"Submit"} onClick={submitHandler}/>
+                        <div className="input-wrapper">
+                            <input {...register("phoneNumber", {required: "Phone number is required" ,pattern: {value: /^\+?\d{10,15}$/, message: "Enter a valid phone number"}})} placeholder='Enter Your Phone Number'/>
+                            {errors.phoneNumber && <p className="form-error">{errors.phoneNumber.message}</p>}
+                        </div>                       
+                        <Button btnText={`${isSubmitting ? 'Submitting...' : 'Submit'}`} onClick={handleSubmit(submitHandler)}/>
                     </form>
                 </div>
 
