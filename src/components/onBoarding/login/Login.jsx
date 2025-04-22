@@ -11,7 +11,7 @@ import StoreCard from "../storeCard/StoreCard";
 import { useNavigate } from "react-router";
 import { GENERATE_OTP_URL, LOGIN_URL } from "../../../utils/axios/apiURL";
 import { useDispatch, useSelector } from "react-redux";
-import { setOrganizationTokens, setStore, setTokens } from "../../../utils/slices/authSlice";
+import { setOrganizationTokens, setTokens } from "../../../utils/slices/authSlice";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
@@ -101,6 +101,8 @@ const Login = () => {
       const response = await api.post('/v1/store-user/auth/generateToken/',{
         store: selectedStore?._id
       })
+      console.log(response);
+      
       dispatch(setOrganizationTokens({accessToken: response.data.token, refreshToken: response.data.refreshToken}));
       
     } catch (err) {
@@ -114,7 +116,6 @@ const Login = () => {
   };
 
   const storeHandler = () => {
-    dispatch(setStore(selectedStore));
     organizationUserToken();
     navigate('dashboard');
   }

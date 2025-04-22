@@ -1,0 +1,234 @@
+.orders{
+    background-color: white;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 12px;
+    padding: 24px 18px;
+}
+.orders_head .head_title{
+    display: flex;
+    justify-content: space-between;
+    height: 42px;
+    align-items: center;
+    padding-top: 25px;
+    padding-left: 25px;
+}
+.orders_head .head_title ul li{
+    margin-bottom: 8px;
+}
+.orders_head .head_title h2{
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    
+
+}
+.orders_head .head_title .btn_icon{
+    width: 22px;
+    height: 22px;
+    margin-right: 20px;
+}
+.orders_head p{
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    padding-left: 25px;
+    margin-top: 9px;
+    color: rgba(134, 140, 154, 1);
+}
+.orders_head {
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+    -ms-overflow-style: none;  /* for Internet Explorer and Edge */
+    scrollbar-width: none;     /* for Firefox */
+  }
+  
+  .orders_head::-webkit-scrollbar {
+    display: none;             /* for Chrome, Safari and Opera */
+  }
+  
+  .orders_head ul {
+    display: flex;
+    flex-direction: row;
+    margin-top:23px !important;                /* space between <li> */
+    width: max-content;       /* allows list to grow horizontally */
+    padding: 0;
+    margin: 0;
+  }
+  
+  .orders_head ul li {
+    min-width: 150px;         /* adjust based on your content */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    color: rgba(134, 140, 154, 1);
+  }
+  
+.orders_head ul li:hover{
+    color: rgba(3, 4, 1, 1);
+    cursor: pointer;
+    
+
+}
+.orders_head ul li .line {
+    display: none;
+    width: 60%;
+    height: 2px;
+    background-color: #668D12;
+}
+
+.orders_head ul li:hover .line {
+    display: block;
+}
+.order{
+    width: 458px;
+    height: 389px;
+    padding: 11px 19px 11px 19px;
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+.order .order_info p{
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    
+}
+.order_info .date{
+    font-weight: 500;
+}
+.order .order_info{
+    height: 18px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.order_for{
+    margin-top: 22px;
+}
+.order_for .contact{
+    display: flex;
+    align-items: center;
+}
+.contact{
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    margin-top: 8px;
+}
+.contact p{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.order_for .icon{
+    width: 24px;
+    height: 24px;
+    border-radius: 50px;
+    gap: 10px;
+    padding: 5px;
+    background: rgba(242, 248, 223, 1);
+    display: inline-block;
+}
+.order_items ul li{
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.order_items ul .item_cost{
+    font-weight: 500;
+}
+.order_items ul li{
+    margin-bottom: 16px;
+}
+.order_items ul{
+    margin-top: 12px;
+    border-bottom: 0.5px solid rgba(134, 140, 154, 1);
+}
+.bill{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 16px;
+}
+.bill .total{
+    display: flex;
+    align-items: center;
+}
+.bill .total .h6{
+    font-family: Inter;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    margin-bottom: 5px;
+    padding: 2px 4px 2px 4px;
+    border-radius: 4px;
+    background: rgba(242, 248, 223, 1);
+    display: inline;
+    width: fit-content;
+    margin-left: 3px;
+    margin-top: 8px;
+}
+.bill .total h6{
+    font-family: Inter;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0px;
+}
+.bill .total p{
+    font-family: Inter;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0px;
+}
+.order_btn{
+    display: flex;
+    gap: 24px;
+    margin-top: 28px;
+}
+.order_btn button{
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    vertical-align: middle;
+    padding: 14px 40px 14px 40px;
+    border-radius: 8px;
+}
+.order_btn .reject_btn{
+    background-color: white;
+    color:#ACC43F;
+    border: 0.5px solid #ACC43F;
+
+}
+.order_btn .confirm_btn {
+    color: white;
+    background: linear-gradient(90deg, #668D12 0%, #ACC43F 113.61%);
+}
+

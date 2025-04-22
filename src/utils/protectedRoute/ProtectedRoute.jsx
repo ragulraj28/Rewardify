@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Navigate, Outlet, useLocation } from 'react-router';
+import { Navigate, useLocation } from 'react-router';
 
-const ProtectedRoute = () => {
+const ProtectedRoute = ({children}) => {
 
     const accessToken = useSelector(state => state.auth.accessToken);
     const location = useLocation();
@@ -11,7 +11,7 @@ const ProtectedRoute = () => {
         return <Navigate to={'/'} state={{ from: location}} replace />
     }
  
-    return <Outlet />;
+    return children;
 
 }
 

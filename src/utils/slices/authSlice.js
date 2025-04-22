@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     accessToken: localStorage.getItem('accessToken') || null,
     refreshToken: localStorage.getItem('refreshToken') || null,
-    isOrganizationUser : false || JSON.parse(localStorage.getItem('isOrganizationUser')),
+    isOrganizationUser : JSON.parse(localStorage.getItem('isOrganizationUser')),
     stores : JSON.parse(localStorage.getItem('stores')) || [],
-    selectedStore: localStorage.getItem('selectedStore') || null,
+    user: null,
 };
 
 const authSlice = createSlice({
@@ -14,19 +14,18 @@ const authSlice = createSlice({
     reducers: {
         setTokens: (state, action) => {
             const { accessToken, refreshToken, isOrganizationUser, stores } = action.payload;
-            state.accessToken = accessToken;
+            state.accessToken = accessToken ;
             state.refreshToken = refreshToken;
             state.isOrganizationUser = isOrganizationUser;
             state.stores = stores;
-            localStorage.setItem('accessToken', accessToken);
-            localStorage.setItem('refreshToken', refreshToken);
-            localStorage.setItem('isOrganizationUser', JSON.stringify(isOrganizationUser));
-            localStorage.setItem('stores', JSON.stringify(stores));
+            localStorage.setItem('accessToken', accessToken ? accessToken : "");
+            localStorage.setItem('refreshToken', refreshToken ? refreshToken : "");
+            localStorage.setItem('isOrganizationUser', JSON.stringify(isOrganizationUser ? isOrganizationUser : false));
+            localStorage.setItem('stores', JSON.stringify(stores ? stores : []));
         },
 
-        setStore: (state, action) => {            
-            state.selectedStore = action.payload;
-            localStorage.setItem('selectedStore', JSON.stringify(action.payload));
+        setUser: (state, action) => {            
+            state.user = action.payload;
         },
 
         setOrganizationTokens: (state, action) => {
@@ -45,5 +44,5 @@ const authSlice = createSlice({
     }
 });
 
-export const { setTokens, setStore, setOrganizationTokens, logout } = authSlice.actions;
+export const { setTokens, setUser, setOrganizationTokens, logout } = authSlice.actions;
 export default authSlice.reducer;

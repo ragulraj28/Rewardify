@@ -1,0 +1,107 @@
+.settlements{
+    height: 112px;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    margin-top: 24px;
+}
+.settlements .settlement_info{
+    width: 342px;
+    height: 84px;
+    gap: 20px;
+    display: flex;
+}
+.settlement_info button{
+    width: 42px;
+    height: 42px;
+    background: rgba(242, 248, 223, 1);
+    border-radius: 100%;
+}
+.settlement_info button img{
+    width: 24px;
+    height: 24px;
+    margin: 9px;
+}
+.settlement_info .info h2{
+    font-family: Inter;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    vertical-align: middle;
+}
+.info{
+    display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+}
+.info p{
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    text-align: center;
+    vertical-align: middle;
+}
+.info h5{font-family: Inter;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 0px;
+}
+.info span{font-family: Inter;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    text-align: center;
+    vertical-align: middle;
+    color: rgba(134, 140, 154, 1);
+    margin-top: 4px;
+}
+.payment_detail{
+    width: 71px;
+    margin-right: -45px;
+}
+.payment_detail h5{
+    font-family: Inter;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    text-align: center;
+    vertical-align: middle;
+    color: rgba(234, 60, 60, 1);
+}
+.payment_detail .paid{font-family: Inter;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    vertical-align: middle;
+    color: rgba(25, 135, 84, 1);
+}
+.payment_detail .view{font-family: Inter;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    vertical-align: middle;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 0%;
+    color: rgba(234, 60, 60, 1);
+}
+.payment_detail .details{
+    width: 34px;
+    height: 42px;
+    gap: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 37px;
+    margin-top: 8px;
+}

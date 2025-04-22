@@ -1,0 +1,19 @@
+@import '../../index.css';
+
+.post-login-layout {
+
+    @apply container mx-auto relative flex flex-col w-full h-screen bg-[#F9F9F9];
+
+    .main-wrapper {
+
+        @apply w-full flex flex-1;
+
+    }
+
+    .outlet-container {
+
+        @apply p-11 py-11 pr-25 flex-1;
+
+    }
+
+}
