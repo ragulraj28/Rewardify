@@ -22,7 +22,7 @@ const Head = () => {
         display:"flex"
       };
   return (
-    <div className='db_head'>
+    <div className='db_head container mx-auto'>
     <img src={rewardify} alt='rewardify' className='logo'></img>
     
     <div className='db_head_btn'>

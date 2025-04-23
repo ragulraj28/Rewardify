@@ -1,24 +1,23 @@
 .logo{
     width: 192px;
 height: 24.863309860229492px;
-
-
 }
 .db_head{
     display: flex;
     width: 100%;
-    height: 81px;
     align-items: center;
     border-bottom: 1px solid #E0E0E0;
-    padding-left: 55px;
+    padding: 18px 55px;
+    padding-right: 101px;
     background-color: white;
 }
 .db_head_btn{
     display: flex;
     margin-left: 90px;
-    max-width: 1005px;
     align-items: center;
-    height: 48px;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
 }
 .db_head_btn .welcome_user{
     font-family: Inter;
@@ -33,34 +32,26 @@ height: 24.863309860229492px;
     white-space: nowrap;
 }
 .db_head_btn .btn{
-    justify-content: center;
     display: flex;
-    margin-left: 340px;
+    align-items: center;
+    gap: 24px;
+    width: fit-content;
+    padding: 0;
     
 }
 .db_head_btn .btn button{
-    width: 44px;
-    height: 44px;
     border-radius: 100%;
     background: #F2F8DF;
-    margin: 16px;
-    padding: 10px;
     justify-items: center;
 }
 .db_head_btn .three_navIcons{
-    width: 164px;
-    height: 44px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    margin-top: -30px;
+    align-items: center;
+    gap: 16px;
 }
 .db_head_btn .three_navIcons button{
-    width: 44px;
-    height: 44px;
     border-radius: 100%;
     background: #F2F8DF;
-    margin: 16px;
     padding: 10px;
     justify-items: center;
 }
@@ -68,8 +59,6 @@ height: 24.863309860229492px;
     font-family: Inter;
     font-weight: 500;
     font-size: 20px;
-    line-height: 100%;
-    letter-spacing: 0px;
     vertical-align: middle;
 
 }
