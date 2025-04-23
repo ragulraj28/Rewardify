@@ -1,10 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const organizationUser = localStorage.getItem("isOrganizationUser");
+const stores = localStorage.getItem('stores');
+
 const initialState = {
+    initialAccessToken: localStorage.getItem('initialAccessToken'),
     accessToken: localStorage.getItem('accessToken') || null,
     refreshToken: localStorage.getItem('refreshToken') || null,
-    isOrganizationUser : JSON.parse(localStorage.getItem('isOrganizationUser')),
-    stores : JSON.parse(localStorage.getItem('stores')) || [],
+    isOrganizationUser : organizationUser != "undefined" && JSON.parse(organizationUser),
+    stores : (stores != "undefined" && JSON.parse(stores)) || [],
     user: null,
 };
 
@@ -13,12 +17,12 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         setTokens: (state, action) => {
-            const { accessToken, refreshToken, isOrganizationUser, stores } = action.payload;
-            state.accessToken = accessToken;
+            const { token, refreshToken, isOrganizationUser, stores } = action.payload;
+            state.accessToken = token;
             state.refreshToken = refreshToken;
             state.isOrganizationUser = isOrganizationUser;
             state.stores = stores;
-            localStorage.setItem('accessToken', accessToken);
+            localStorage.setItem('initialAccessToken', accessToken);
             localStorage.setItem('refreshToken', refreshToken);
             localStorage.setItem('isOrganizationUser', JSON.stringify(isOrganizationUser));
             localStorage.setItem('stores', JSON.stringify(stores));

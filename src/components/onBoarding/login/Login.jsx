@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form";
 import { setStore } from "../../../utils/slices/storeSlice";
 
 const Login = () => {
-  const { accessToken, stores } = useSelector(state => state.auth);
+  const { initialAccessToken, accessToken, stores } = useSelector(state => state.auth);
   const [screen, setScreen] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState(Array(4).fill(""));
@@ -28,7 +28,7 @@ const Login = () => {
   
   // Check if user is already authenticated and navigate to the correct page
   useEffect(() => {
-    if (accessToken) {
+    if (accessToken && accessToken != "undefined" || initialAccessToken) {
       authNavigation(stores);
     }    
   }, [accessToken, stores]);
@@ -90,20 +90,25 @@ const Login = () => {
         }
       );
       const { token, refreshToken, isOrganizationUser, stores = [] } = response.data;
-      dispatch(setTokens({ accessToken: token, refreshToken, isOrganizationUser, stores }));  
+      dispatch(setTokens({ token, refreshToken, isOrganizationUser, stores }));  
       authNavigation(stores);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const organizationUserToken = async () => {   
+  const organizationUserToken = async () => {    
     try {
       const response = await api.post('/v1/store-user/auth/generateToken/',{
         store: selectedStore?._id
+      },{
+        headers: {
+          Authorization:`Bearer ${initialAccessToken}`
+        }
       })   
       dispatch(setOrganizationTokens({accessToken: response.data.token, refreshToken: response.data.refreshToken}));
-      
+      dispatch(setStore(selectedStore));   
+      navigate('dashboard');
     } catch (err) {
       console.error(err);
     }
@@ -113,12 +118,6 @@ const Login = () => {
     generateOTP();
     setSecondsLeft(55);
   };
-
-  const storeHandler = () => {
-   organizationUserToken();
-   dispatch(setStore(selectedStore));   
-    navigate('dashboard');
-  }
   
   const renderContent = () => {
     switch (screen) {
@@ -208,7 +207,7 @@ const Login = () => {
           >
             {stores?.map(data => <StoreCard key={data?._id} storeData={data} selected={selectedStore?._id === data?._id} setSelectedStore={setSelectedStore}/>)}
 
-            <Button btnText={"Continue"} btnStyle={`${selectedStore ? 'fill' : 'disabled'}`} onClick={() => selectedStore && storeHandler()}/>
+            <Button btnText={"Continue"} btnStyle={`${selectedStore ? 'fill' : 'disabled'}`} onClick={() => selectedStore && organizationUserToken()}/>
           </LoginCard>
         );
 
