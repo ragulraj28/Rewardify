@@ -1,8 +1,17 @@
+@import '../../../index.css';
+
 .SideBar{
-    width: 271px;
-    height: 100%;
-    background-color: white;
+    
+    @apply hidden 2xl:block z-20 max-w-[271px] w-full h-full bg-white;
+
+    &.active {
+
+        @apply block absolute 2xl:relative left-0 top-[66px];
+        
+    }
+
 }
+
 .shopDetail{
     width: 196px;
     height: 147px;

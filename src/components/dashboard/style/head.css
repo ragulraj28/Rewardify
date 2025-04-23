@@ -1,7 +1,5 @@
-.logo{
-    width: 192px;
-height: 24.863309860229492px;
-}
+@import '../../../index.css';
+
 .db_head{
     display: flex;
     width: 100%;
@@ -10,14 +8,24 @@ height: 24.863309860229492px;
     padding: 18px 55px;
     padding-right: 101px;
     background-color: white;
+
+    .menu-toggle svg {
+
+        @apply block 2xl:hidden text-secondary h-6 w-6 mr-5;
+
+    }
+
 }
 .db_head_btn{
-    display: flex;
-    margin-left: 90px;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    width: 100%;
+
+    @apply flex 2xl:ml-[90px] ml-10 items-center justify-between gap-5 w-full;
+
+    .btn {
+
+        @apply hidden 2xl:flex w-fit items-center p-0 gap-6;
+
+    }
+
 }
 .db_head_btn .welcome_user{
     font-family: Inter;
@@ -31,14 +39,7 @@ height: 24.863309860229492px;
     flex-wrap: nowrap;
     white-space: nowrap;
 }
-.db_head_btn .btn{
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    width: fit-content;
-    padding: 0;
-    
-}
+
 .db_head_btn .btn button{
     border-radius: 100%;
     background: #F2F8DF;

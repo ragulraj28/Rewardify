@@ -14,14 +14,14 @@ const authSlice = createSlice({
     reducers: {
         setTokens: (state, action) => {
             const { accessToken, refreshToken, isOrganizationUser, stores } = action.payload;
-            state.accessToken = accessToken ;
+            state.accessToken = accessToken;
             state.refreshToken = refreshToken;
             state.isOrganizationUser = isOrganizationUser;
             state.stores = stores;
-            localStorage.setItem('accessToken', accessToken ? accessToken : "");
-            localStorage.setItem('refreshToken', refreshToken ? refreshToken : "");
-            localStorage.setItem('isOrganizationUser', JSON.stringify(isOrganizationUser ? isOrganizationUser : false));
-            localStorage.setItem('stores', JSON.stringify(stores ? stores : []));
+            localStorage.setItem('accessToken', accessToken);
+            localStorage.setItem('refreshToken', refreshToken);
+            localStorage.setItem('isOrganizationUser', JSON.stringify(isOrganizationUser));
+            localStorage.setItem('stores', JSON.stringify(stores));
         },
 
         setUser: (state, action) => {            
@@ -38,8 +38,8 @@ const authSlice = createSlice({
         logout: (state) => {
             state.accessToken = null;
             state.refreshToken = null;
-            //state.user = null;
-            localStorage.clear();
+            localStorage.removeItem("accessToken");
+            localStorage.removeItem("refreshToken");
         }
     }
 });

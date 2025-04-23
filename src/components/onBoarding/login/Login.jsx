@@ -13,6 +13,7 @@ import { GENERATE_OTP_URL, LOGIN_URL } from "../../../utils/axios/apiURL";
 import { useDispatch, useSelector } from "react-redux";
 import { setOrganizationTokens, setTokens } from "../../../utils/slices/authSlice";
 import { useForm } from "react-hook-form";
+import { setStore } from "../../../utils/slices/storeSlice";
 
 const Login = () => {
   const { accessToken, stores } = useSelector(state => state.auth);
@@ -47,8 +48,8 @@ const Login = () => {
       if(stores.length < 2) {
         
         setSelectedStore(stores[0]);
-        dispatch(setStore(stores[0]));
         organizationUserToken();
+        dispatch(setStore(stores[0]));
         navigate('dashboard');
 
       } else {
@@ -96,13 +97,11 @@ const Login = () => {
     }
   };
 
-  const organizationUserToken = async () => {
+  const organizationUserToken = async () => {   
     try {
       const response = await api.post('/v1/store-user/auth/generateToken/',{
         store: selectedStore?._id
-      })
-      console.log(response);
-      
+      })   
       dispatch(setOrganizationTokens({accessToken: response.data.token, refreshToken: response.data.refreshToken}));
       
     } catch (err) {
@@ -116,7 +115,8 @@ const Login = () => {
   };
 
   const storeHandler = () => {
-    organizationUserToken();
+   organizationUserToken();
+   dispatch(setStore(selectedStore));   
     navigate('dashboard');
   }
   
@@ -232,7 +232,7 @@ const Login = () => {
           </LoginCard>
         );
     }
-  };
+  };  
 
   return (
     <div className="on-boarding">
