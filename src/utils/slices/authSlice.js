@@ -22,7 +22,7 @@ const authSlice = createSlice({
             state.refreshToken = refreshToken;
             state.isOrganizationUser = isOrganizationUser;
             state.stores = stores;
-            localStorage.setItem('initialAccessToken', accessToken);
+            localStorage.setItem('initialAccessToken', token);
             localStorage.setItem('refreshToken', refreshToken);
             localStorage.setItem('isOrganizationUser', JSON.stringify(isOrganizationUser));
             localStorage.setItem('stores', JSON.stringify(stores));
