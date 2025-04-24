@@ -14,6 +14,7 @@ const initialState = {
 };
 
 const authSlice = createSlice({
+<<<<<<< HEAD
   name: "auth",
   initialState,
   reducers: {
@@ -32,6 +33,22 @@ const authSlice = createSlice({
       );
       localStorage.setItem("stores", JSON.stringify(stores));
     },
+=======
+    name: 'auth',
+    initialState,
+    reducers: {
+        setTokens: (state, action) => {
+            const { token, refreshToken, isOrganizationUser, stores } = action.payload;
+            state.accessToken = token;
+            state.refreshToken = refreshToken;
+            state.isOrganizationUser = isOrganizationUser;
+            state.stores = stores;
+            localStorage.setItem('initialAccessToken', token);
+            localStorage.setItem('refreshToken', refreshToken);
+            localStorage.setItem('isOrganizationUser', JSON.stringify(isOrganizationUser));
+            localStorage.setItem('stores', JSON.stringify(stores));
+        },
+>>>>>>> ec03804be43c5bb2e0a57c3711402d8239ca4dd5
 
     setUser: (state, action) => {
       state.user = action.payload;

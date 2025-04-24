@@ -97,7 +97,8 @@ const Login = () => {
     }
   };
 
-  const organizationUserToken = async () => {    
+  const organizationUserToken = async () => {
+    const initialAccessToken = localStorage.getItem("initialAccessToken"); 
     try {
       const response = await api.post('/v1/store-user/auth/generateToken/',{
         store: selectedStore?._id
