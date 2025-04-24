@@ -2,7 +2,7 @@ import axios from "axios";
 import platform from "platform";
 import { BASE_URL, REFRESH_TOKEN_URL } from "./apiURL";
 import store from "../store/store";
-import { setTokens, logout } from "../slices/authSlice";
+import { logout, setOrganizationTokens } from "../slices/authSlice";
 
 const api = axios.create({
     baseURL: BASE_URL,
@@ -26,7 +26,7 @@ api.interceptors.request.use(
                
         config.headers['Device'] = JSON.stringify(getDeviceInfo());
 
-        const token = localStorage.getItem("accessToken");
+        const token = store.getState().auth.accessToken;
         if (token && token != "undefined" && !config.url.includes('/v1/store-user/auth/generateToken/')) {
             config.headers['Authorization'] = `Bearer ${token}`;
         }
@@ -42,18 +42,23 @@ api.interceptors.response.use(
     async (error) => {
         const originalRequest = error.config;
 
-        const refreshToken = localStorage.getItem("refreshToken");
+        const refreshToken = store.getState().auth.refreshToken;
         
         if (error.response?.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true;
 
+            if (!refreshToken) {
+                store.dispatch(logout());
+                return Promise.reject("No refresh token available.");
+            }
+
             try {
                 const response = await axios.post(`${BASE_URL}${REFRESH_TOKEN_URL}`,{},{headers:{ 'refresh-token': `Bearer ${refreshToken}`}});
                 
-                const newAccessToken = response.data.authToken;
+                const newAccessToken = response.data.token;                
 
                 // Update tokens in store and localStorage
-                store.dispatch(setTokens({ accessToken: newAccessToken }));
+                store.dispatch(setOrganizationTokens({ accessToken: newAccessToken, refreshToken }));
                 localStorage.setItem("accessToken", newAccessToken);
 
                 // Retry original request with new access token

@@ -28,7 +28,7 @@ const Login = () => {
   
   // Check if user is already authenticated and navigate to the correct page
   useEffect(() => {
-    if (accessToken && accessToken != "undefined" || initialAccessToken) {
+    if (accessToken && accessToken != "undefined" || initialAccessToken) {  
       authNavigation(stores);
     }    
   }, [accessToken, stores]);
@@ -97,8 +97,10 @@ const Login = () => {
     }
   };
 
-  const organizationUserToken = async () => {
-    const initialAccessToken = localStorage.getItem("initialAccessToken"); 
+  const organizationUserToken = async () => {    
+    
+    const initialAccessToken = localStorage.getItem("initialAccessToken");
+    
     try {
       const response = await api.post('/v1/store-user/auth/generateToken/',{
         store: selectedStore?._id

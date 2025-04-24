@@ -15,8 +15,7 @@ const Head = () => {
   const dispatch = useDispatch()
 
   const coin_btn = {
-      width: "193px",
-      height: "48px",
+      
       gap: "6px",
       borderRadius: "12px",
       paddingTop: "12px",

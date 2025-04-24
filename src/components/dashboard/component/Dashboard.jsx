@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../../utils/slices/authSlice';
 const Dashboard = () => {
 
-  const{ accessToken, refreshToken } = useSelector(state => state.auth);
+  const{ accessToken } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   
   useEffect(() => {
@@ -21,7 +21,8 @@ const Dashboard = () => {
         console.error(err);
       }
     };
-    refreshToken && getUser();
+
+    accessToken && getUser();
 
   }, [accessToken]);
   
