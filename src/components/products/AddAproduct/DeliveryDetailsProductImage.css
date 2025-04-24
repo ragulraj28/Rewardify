@@ -1,0 +1,6 @@
+@import "../../../index.css";
+
+
+.delivery-details-product-image-container {
+    @apply flex gap-[44px] items-center justify-center
+}

@@ -1,0 +1,7 @@
+@import "../../index.css";
+
+
+.Product-page-header {
+    @apply flex justify-between align-middle p-[10px] flex-wrap;
+
+}

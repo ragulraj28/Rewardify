@@ -1,0 +1,8 @@
+@import "../../index.css";
+
+
+
+
+.products {
+    @apply bg-white rounded-[12px] px-[40px] py-[24px]
+}

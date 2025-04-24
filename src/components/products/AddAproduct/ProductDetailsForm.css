@@ -1,0 +1,61 @@
+@import "../../../index.css";
+
+
+
+.product-details-form-row {
+    @apply flex gap-[40px] mb-[20px]
+}
+
+.product-details-form-row .product-details-form-col {
+    @apply basis-1/2
+}
+
+.product-details-form-row .product-details-form-col select.product-details-select {
+    @apply w-full appearance-none px-4 py-[16px] pr-10 border-[#E0E0E0] border-2 rounded-md placeholder:text-[#BEBEBE] text-[14px] font-[400]
+}
+
+select.product-details-select option.value {
+    @apply text-secondary
+}
+
+select.product-details-select option.placeholder {
+    @apply text-[#BEBEBE]
+}
+
+.product-details-arrow-container {
+    @apply absolute right-5 top-1/2 transform -translate-y-1/2 pointer-events-none
+}
+
+
+
+select.product-name-select {
+    @apply w-full appearance-none px-4 py-[16px] pr-10 border-[#E0E0E0] border-2 rounded-md placeholder:text-[#BEBEBE] text-[14px] font-[400] pl-[43px] focus:outline-0
+}
+
+select.product-name-select option.value {
+    @apply text-secondary
+}
+
+select.product-name-select option.placeholder {
+    @apply text-[#BEBEBE]
+}
+
+
+.product-details-search-icon-container {
+    @apply absolute left-[15px] top-1/2 transform -translate-y-1/2 pointer-events-none
+}
+
+
+
+input.product-details-product-mrp {
+    @apply w-full appearance-none px-4 py-[16px] border-[#E0E0E0] border-2 rounded-md placeholder:text-[#BEBEBE] text-secondary text-[14px] font-[400] focus:outline-0
+}
+
+
+.inner-section-two-col {
+    @apply flex gap-[23px]
+}
+
+.product-detials-two-col {
+    @apply basis-1/2
+}

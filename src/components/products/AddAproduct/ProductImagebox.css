@@ -1,0 +1,6 @@
+@import "../../../index.css";
+
+
+.product-image-box {
+    @apply border-[#E0E0E0] border-2 rounded-md pt-[38px] pb-[36px] px-[33px] w-full
+}

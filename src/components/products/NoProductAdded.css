@@ -1,0 +1,27 @@
+@import "../../index.css";
+
+
+.noproducts-added {
+    @apply flex items-center justify-center h-[70vh]
+}
+
+.no-products {
+
+    @apply text-center flex justify-center flex-col items-center px-[10px] md:px-[20px] w-[100%] md:w-[438px];
+
+    p {
+        @apply text-[14px] md:text-[16px] text-[#868C9A] mb-[19px]
+    }
+}
+
+.no-products img {
+    @apply w-[215px] pb-[50px]
+}
+
+.no-products h2 {
+    @apply text-[24px] font-[600] pb-[16px]
+}
+
+/* .no-products h2 {
+    @apply text-[24px] font-[600] pb-[16px]
+} */

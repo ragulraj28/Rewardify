@@ -1,0 +1,6 @@
+@import "../../index.css";
+
+
+.product-page-heading {
+    @apply text-[24px] font-[600] pb-4 md:pb-0
+}

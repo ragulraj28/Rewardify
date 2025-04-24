@@ -1,0 +1,7 @@
+@import "../../index.css";
+
+
+
+.product-page-header-left {
+    @apply mb-4
+}
