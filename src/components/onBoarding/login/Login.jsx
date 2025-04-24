@@ -104,11 +104,12 @@ const Login = () => {
     try {
       const response = await api.post('/v1/store-user/auth/generateToken/',{
         store: selectedStore?._id
-      },{
+      },
+      {
         headers: {
           Authorization:`Bearer ${initialAccessToken}`
         }
-      })   
+      })
       dispatch(setOrganizationTokens({accessToken: response.data.token, refreshToken: response.data.refreshToken}));
       dispatch(setStore(selectedStore));   
       navigate('dashboard');

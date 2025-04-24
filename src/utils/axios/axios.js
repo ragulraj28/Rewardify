@@ -2,7 +2,7 @@ import axios from "axios";
 import platform from "platform";
 import { BASE_URL, REFRESH_TOKEN_URL } from "./apiURL";
 import store from "../store/store";
-import { logout, setOrganizationTokens } from "../slices/authSlice";
+import { setTokens, logout, setOrganizationTokens } from "../slices/authSlice";
 
 const api = axios.create({
     baseURL: BASE_URL,

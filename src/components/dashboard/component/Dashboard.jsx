@@ -7,24 +7,6 @@ import Body from './Body';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../../utils/slices/authSlice';
 const Dashboard = () => {
-
-  const{ accessToken } = useSelector(state => state.auth);
-  const dispatch = useDispatch();
-  
-  useEffect(() => {
-
-    const getUser = async () => {
-      try {
-        const user = await api.get('/v1/store-user/store/user');
-        dispatch(setUser(user?.data));
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    accessToken && getUser();
-
-  }, [accessToken]);
   
   return (
     <div className='dashboard'>

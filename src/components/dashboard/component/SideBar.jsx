@@ -24,7 +24,7 @@ const SideBar = () => {
   }
 
   return (
-    <div className={`SideBar ${(active && winwidth <= 1536) && 'active'}`}>
+    <div className={`SideBar ${(active && winwidth < 1536) && 'active'}`}>
         <div className='shopDetail'>
             <div className='img'><img src={storeImg} alt='shop' style={{borderRadius:"8px"}}></img></div>
             <select><option>{storeName}</option></select>
@@ -33,7 +33,7 @@ const SideBar = () => {
         <div className='sb_links'>
           <ul>
             <li><Link to={'dashboard'} onClick={handleClick}><MdOutlineDashboard /><p>dashboard</p></Link></li>
-            <li><Link to={'orders'} onClick={handleClick}><BsTruck /><p>Orders</p></Link></li>
+            <li><Link to={'orders/confirmation'} onClick={handleClick}><BsTruck /><p>Orders</p></Link></li>
             <li><Link to={'products'} onClick={handleClick}><MdOutlineAddShoppingCart /><p>My Products</p></Link></li>
             <li><Link to={'profile'} onClick={handleClick}><MdOutlinePersonOutline /><p>Profile</p></Link></li>
           </ul>

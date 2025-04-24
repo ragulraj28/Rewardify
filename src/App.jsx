@@ -3,7 +3,6 @@ import Login from './components/onBoarding/login/Login'
 import { BrowserRouter, Routes, Route } from 'react-router'
 import Contact from './components/onBoarding/contact/Contact'
 import Dashboard from './components/dashboard/component/Dashboard'
-import Orders from './components/orders/Orders'
 import Profile from './components/profile/Profile'
 import Products from './components/products/Products'
 import { Provider } from 'react-redux'
@@ -11,6 +10,11 @@ import store from './utils/store/store'
 import ProtectedRoute from './utils/protectedRoute/ProtectedRoute'
 import RegisterStore from './components/onBoarding/registerStore/RegisterStore'
 import PostLoginLayout from './components/postLoginLayout/PostLoginLayout'
+import { ConfirmationPage } from './components/orders/ConfirmationPage'
+import { PreparingPage } from './components/orders/PreparingPage'
+import { PackedPage } from './components/orders/PackedPage'
+import { CompletedPage } from './components/orders/CompletedPage'
+import OrdersContainer from './components/orders/OrdersContainer'
 
 const App = () => {
   
@@ -23,7 +27,12 @@ const App = () => {
           <Route path='register-store' element={<RegisterStore />}/>
           <Route element={<ProtectedRoute><PostLoginLayout /></ProtectedRoute>}>
             <Route path='dashboard' element={<Dashboard />}/>
-            <Route path='orders' element={<Orders />}/>
+            <Route path='orders' element={<OrdersContainer />}>
+              <Route path="confirmation" element={<ConfirmationPage />} />
+              <Route path="preparing" element={<PreparingPage />} />
+              <Route path="packed" element={<PackedPage />} />
+              <Route path="completed" element={<CompletedPage />} />
+            </Route>
             <Route path='products' element={<Products />}/>
             <Route path='profile' element={<Profile />}/>
           </Route>
