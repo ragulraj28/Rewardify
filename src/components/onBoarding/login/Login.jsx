@@ -17,11 +17,12 @@ import { setStore } from "../../../utils/slices/storeSlice";
 
 const Login = () => {
   const { initialAccessToken, accessToken, stores } = useSelector(state => state.auth);
+  const selectedStoreRedux = useSelector(state => state.store.selectedStore)
   const [screen, setScreen] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState(Array(4).fill(""));
   const [secondsLeft, setSecondsLeft] = useState(null);
-  const[selectedStore, setSelectedStore] = useState(null);
+  const[selectedStore, setSelectedStore] = useState(selectedStoreRedux);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { register, handleSubmit, formState:{ errors} } = useForm();
@@ -45,7 +46,7 @@ const Login = () => {
     
     if (stores.length > 0) {
 
-      if(stores.length < 2) {
+      if(stores.length < 2 || selectedStore != null) {
         
         setSelectedStore(stores[0]);
         organizationUserToken();
@@ -109,7 +110,7 @@ const Login = () => {
         headers: {
           Authorization:`Bearer ${initialAccessToken}`
         }
-      })
+      })   
       dispatch(setOrganizationTokens({accessToken: response.data.token, refreshToken: response.data.refreshToken}));
       dispatch(setStore(selectedStore));   
       navigate('dashboard');
