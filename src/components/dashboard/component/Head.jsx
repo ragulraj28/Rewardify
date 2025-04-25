@@ -24,7 +24,10 @@ const Head = () => {
       paddingLeft: "24px",
       display:"flex"
   };
-
+  const icon_btn={
+    width:"22px",
+    height:"22px"
+  }
   const menuToggle = () => {
     dispatch(toggleSidebar());
   }
@@ -39,9 +42,9 @@ const Head = () => {
       <div className='btn'>
         <button style={coin_btn}><p className='coin_text'>XCoins: 300</p><img src={goldCoin} alt='coin'></img></button>
         <div className='three_navIcons'>
-        <button><FaHandHoldingDollar /></button>
-        <button><FaRegBell  /></button>
-        <button><MdOutlinePersonOutline /></button>
+        <button><FaHandHoldingDollar style={icon_btn}/></button>
+        <button><FaRegBell style={icon_btn} /></button>
+        <button><MdOutlinePersonOutline style={icon_btn}/></button>
         </div>
       </div>
     </div>

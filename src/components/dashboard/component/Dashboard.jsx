@@ -9,8 +9,8 @@ import { setUser } from '../../../utils/slices/authSlice';
 const Dashboard = () => {
   
   return (
-    <div className='dashboard'>
-        <Body/>      
+    <div className='dashboard' >
+        <Body />
     </div>
   )
 }

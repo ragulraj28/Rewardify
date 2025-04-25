@@ -1,9 +1,11 @@
 .dashboard {
-
+    
   .body {
 
     display: flex;
     gap: 24px;
+    width: 100%;
+    height: 100%;
 
     .body_part1 {
 
@@ -14,5 +16,25 @@
     }
 
   }
+  .whatsapp {
+    position: fixed;
+    right: 72px;
+    bottom: 50px;
+    width: 48px; 
+    height: 48px; 
+    cursor: pointer;
+    z-index: 999; 
+    
+  }
+  
 
+}
+@media (max-width:767px){
+  .body{
+    flex-wrap: wrap;
+  }
+  .whatsapp {
+    position: absolute;
+    right: 32px;
+  }
 }

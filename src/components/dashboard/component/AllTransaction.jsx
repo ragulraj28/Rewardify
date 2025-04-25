@@ -22,6 +22,7 @@ const AllTransaction = ({ph_no,paid_time,paid_date,time,payment_method}) => {
             <div className='rupees'>+{'\u20B9'}500.00</div>
 
             
+            <div style={{width: '100%',height: '1px',backgroundColor: 'rgba(134, 140, 154, 1)',margin: '0 12px'}}></div>
     </div>
   )
 }

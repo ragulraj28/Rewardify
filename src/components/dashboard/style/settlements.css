@@ -1,5 +1,5 @@
 .settlements{
-    height: 112px;
+
     width: 90%;
     display: flex;
     justify-content: space-between;
@@ -52,6 +52,8 @@
     font-size: 12px;
     line-height: 100%;
     letter-spacing: 0px;
+    background: rgba(242, 248, 223, 1);
+    padding: 2px 4px 2px 4px;
 }
 .info span{font-family: Inter;
     font-weight: 400;

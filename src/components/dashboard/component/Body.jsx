@@ -2,7 +2,9 @@ import React from 'react'
 import Actions from './Actions';
 import '../style/dashboard.css'
 import Transaction from './Transaction';
-import Orders from './Orders';
+import OrdersContainer from '../../orders/OrdersContainer'
+import whatsapp from '../../../assets/whatsapp.png'
+
 const Body = () => {
     return (
       <div className="body" >
@@ -11,8 +13,10 @@ const Body = () => {
             <Transaction />
         </div>
         <div className='body_part2'>
-            <Orders />
+            <OrdersContainer />
+            
         </div>
+          <img className='whatsapp' src={whatsapp} alt='whatsapp'></img>
       </div>
     );
   };

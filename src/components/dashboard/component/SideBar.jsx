@@ -15,6 +15,7 @@ const SideBar = () => {
   const {selectedStore}=useSelector((states)=>states.store);
   const storeName=selectedStore?.name?.split(" ").slice(0,2).join(" ");
   const storeImg=selectedStore?.images;
+  const storeid=selectedStore?._id;
   const { active } = useSelector(state => state.sidebar);
   const winwidth = useResize();
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const SideBar = () => {
         <div className='shopDetail'>
             <div className='img'><img src={storeImg} alt='shop' style={{borderRadius:"8px"}}></img></div>
             <select><option>{storeName}</option></select>
-            <p>Shop ID: -</p>
+            <p>Shop ID:{storeid}</p>
         </div>
         <div className='sb_links'>
           <ul>

@@ -2,6 +2,7 @@
 
 .db_head{
     display: flex;
+    max-width: 1440px;
     width: 100%;
     align-items: center;
     border-bottom: 1px solid #E0E0E0;
@@ -38,12 +39,22 @@
     display: flex;
     flex-wrap: nowrap;
     white-space: nowrap;
+
+    @apply hidden sm:flex;
+
 }
 
 .db_head_btn .btn button{
     border-radius: 100%;
     background: #F2F8DF;
-    justify-items: center;
+    display: flex;
+    align-items: center;
+
+    img {
+
+        height: 21px;
+        width: 21px;
+    }
 }
 .db_head_btn .three_navIcons{
     display: flex;
@@ -61,5 +72,4 @@
     font-weight: 500;
     font-size: 20px;
     vertical-align: middle;
-
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import '../style/settlements.css'
 import api from '../../../utils/axios/axios';
-import logoGreen from '../../../assets/logo.png'
+import logoGreen from '../../../assets/icons/logogreen.png'
 const Settlements = () => {
     
   useEffect(() => {
@@ -19,9 +19,10 @@ const Settlements = () => {
   }, []);
 
 return (
-        <div className='settlements'>
-            <div className='settlement_info'>
-                <button><img src={logoGreen} alt='logo'></img></button>
+        <div className='settlements' >
+          
+          <div className='settlement_info'>
+                <img src={logoGreen} alt='logo' style={{height:"44px",width:"44px"}}></img>
                 <div className='info'>
                     <h3>Weekly Settlements(10 Apr - 17 Apr) </h3>
                     <p>Paid on Apr 11, 2024 at 4:30PM</p>
@@ -36,6 +37,9 @@ return (
                     <p className='view'>view</p>
                 </div>
             </div>
+          
+{/*             
+            <div style={{width: '100%',height: '1px',backgroundColor: 'rgba(134, 140, 154, 1)',margin: '0 12px'}}></div> */}
         </div>
     
 )

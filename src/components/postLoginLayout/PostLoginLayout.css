@@ -2,7 +2,9 @@
 
 .post-login-layout {
 
-    @apply container mx-auto relative flex flex-col w-full h-screen bg-[#F9F9F9];
+    @apply container relative flex flex-col w-full h-screen bg-[#F9F9F9] ml-0 ;
+
+
 
     .main-wrapper {
 
@@ -12,7 +14,8 @@
 
     .outlet-container {
 
-        @apply p-11 py-11 pr-25 flex-1;
+        @apply p-11 py-11 pr-25 flex-1 w-full bg-[rgba(242,248,223,1)] ;
+
 
     }
 
