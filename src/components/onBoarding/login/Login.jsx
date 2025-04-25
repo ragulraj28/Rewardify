@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form";
 import { setStore } from "../../../utils/slices/storeSlice";
 
 const Login = () => {
-  const { initialAccessToken, accessToken, stores } = useSelector(state => state.auth);
+  const { initialAccessToken, accessToken, stores , isOrganizationUser } = useSelector(state => state.auth);
   const selectedStoreRedux = useSelector(state => state.store.selectedStore)
   const [screen, setScreen] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -30,9 +30,9 @@ const Login = () => {
   // Check if user is already authenticated and navigate to the correct page
   useEffect(() => {
     if (accessToken && accessToken != "undefined" || initialAccessToken) {  
-      authNavigation(stores);
+      authNavigation(stores, initialAccessToken);
     }    
-  }, [accessToken, stores]);
+  }, []);
 
   useEffect(() => {
     if (screen === "otp" && secondsLeft === null) setSecondsLeft(55);
@@ -42,16 +42,20 @@ const Login = () => {
     return () => clearInterval(timer);
   }, [screen, secondsLeft]);
 
-  const authNavigation = (stores) => {
+  const authNavigation = (stores, token) => {    
     
-    if (stores.length > 0) {
+    (selectedStore != null && accessToken) && navigate('dashboard');
+    
+    if ( token && stores.length > 0) {
 
-      if(stores.length < 2 || selectedStore != null) {
+      if(stores.length < 2) {
         
         setSelectedStore(stores[0]);
-        organizationUserToken();
         dispatch(setStore(stores[0]));
-        navigate('dashboard');
+        if(!accessToken && isOrganizationUser) {
+          organizationUserToken();
+        }
+        accessToken && navigate('dashboard');
 
       } else {
         
@@ -92,7 +96,7 @@ const Login = () => {
       );
       const { token, refreshToken, isOrganizationUser, stores = [] } = response.data;
       dispatch(setTokens({ token, refreshToken, isOrganizationUser, stores }));  
-      authNavigation(stores);
+      authNavigation(stores, token);
     } catch (error) {
       console.error(error);
     }

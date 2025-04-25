@@ -3,6 +3,7 @@ import platform from "platform";
 import { BASE_URL, REFRESH_TOKEN_URL } from "./apiURL";
 import store from "../store/store";
 import { logout, setOrganizationTokens } from "../slices/authSlice";
+import { Navigate } from "react-router";
 
 const api = axios.create({
     baseURL: BASE_URL,
@@ -48,11 +49,12 @@ api.interceptors.response.use(
             originalRequest._retry = true;
 
             if(originalRequest.url.includes('/v1/store-user/auth/generateToken/')) {                
-                localStorage.removeItem('initialAccessToken');
+                window.location.href = '/';
+                store.dispatch(logout());
                 return Promise.reject("No refresh token available for non organization user access token.");
             }
 
-            if (!refreshToken) {
+            if (!refreshToken) {                
                 store.dispatch(logout());
                 return Promise.reject("No refresh token available.");
             }

@@ -42,9 +42,10 @@ const authSlice = createSlice({
         logout: (state) => {
             state.accessToken = null;
             state.refreshToken = null;
-            localStorage.removeItem("accessToken");
-            localStorage.removeItem("refreshToken");
-            state.user = null;
+            localStorage.clear();
+            state.initialAccessToken = null;
+            state.stores = null;
+            state.isOrganizationUser = null;
         },
     }
 });
