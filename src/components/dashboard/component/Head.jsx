@@ -33,7 +33,7 @@ const Head = () => {
   }
 
   return (
-    <div className='db_head container mx-auto'>
+    <div className='db_head'>
       <div className="menu-toggle"><MenuIcon onClick={menuToggle}/></div>
     <img src={rewardify} alt='rewardify' className='logo'></img>
     

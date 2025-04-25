@@ -2,13 +2,14 @@
 
 .db_head{
     display: flex;
-    max-width: 1440px;
     width: 100%;
     align-items: center;
     border-bottom: 1px solid #E0E0E0;
     padding: 18px 55px;
     padding-right: 101px;
     background-color: white;
+
+    @apply container mx-auto;
 
     .menu-toggle svg {
 

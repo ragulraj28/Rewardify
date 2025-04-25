@@ -14,7 +14,7 @@
 
 .shopDetail{
     padding-right: 20px;
-    margin-top: 60px;
+    padding-top: 60px;
     padding-left: 55px;
     display: flex;
     flex-direction: column; /* or row */
