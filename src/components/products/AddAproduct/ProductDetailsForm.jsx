@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ProductDetailsForm.css";
 import { useSelector } from "react-redux";
 import { useFormContext, useWatch } from "react-hook-form";
@@ -13,7 +13,7 @@ const product_category = [
   "Chocolate and Desserts",
 ];
 const ProductDetailsForm = () => {
-  const { register, control } = useFormContext();
+  const { register, control, getValues, watch } = useFormContext();
   const [selected, setSelected] = useState("");
   const { allProducts } = useSelector((state) => state.products);
   const [products, setProducts] = useState(allProducts);
@@ -21,12 +21,25 @@ const ProductDetailsForm = () => {
   const categories = [
     ...new Set(products.map((data) => data?.productCategory?.name)),
   ];
-  const selectedCategory = useWatch({ control, name: "categoryName" });
-  console.log(selectedCategory);
+  // const selectedCategory = useWatch({ control, name: "categoryName" });
+  // console.log(selectedCategory);
+
+  const categoryname = watch("categoryName");
+
+  useEffect(() => {
+    if (categoryname) {
+      console.log("Selected Category:", categoryname);
+    }
+  }, [categoryname]);
+
+  // useEffect(() => {
+  //   if (categoryName) {
+  //     console.log("Selected Category:", categoryName);
+  //   }
+  // }, [categoryName]);
+
   const produtsList = products
-    .filter((product) =>
-      product.productCategory.name.includes(selectedCategory)
-    )
+    .filter((product) => product.productCategory.name.includes(categoryname))
     .map((product) => product.name);
 
   // const categoryName = products
@@ -42,10 +55,9 @@ const ProductDetailsForm = () => {
           <select
             {...register("categoryName")}
             className={`product-details-select ${
-              selected === "" ? "text-[#bebebe]" : "text-[#000]"
+              !categoryname ? "text-tertiary" : "text-secondary"
             } `}
-            onChange={(e) => setSelected(e.target.value)}
-            id=""
+            id="categoryName"
           >
             <option
               value=""

@@ -31,6 +31,7 @@ const Products = () => {
     try {
       const response = await api.post(`/v1/store-user/master/products/list`);
       // console.log(response?.data?.data);
+      console.log(response?.data?.data);
       dispatch(setProducts(response?.data?.data));
     } catch (err) {
       console.error("Error fetching data:", err);
