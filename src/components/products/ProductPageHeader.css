@@ -2,6 +2,6 @@
 
 
 .Product-page-header {
-    @apply flex justify-between align-middle p-[10px] flex-wrap;
+    @apply flex justify-between align-middle p-[10px] flex-wrap lg:flex-nowrap;
 
 }

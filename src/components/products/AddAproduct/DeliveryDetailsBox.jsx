@@ -24,7 +24,7 @@ const DeliveryDetailsBox = () => {
                 type="checkbox"
                 id={option.id} // Use unique id for label association
                 value={option.value} // This value is added to the array when checked
-                {...register("interests", {
+                {...register("deliveryType", {
                   // Add validation rules here if needed
                   validate: (value) =>
                     (value && value.length > 0) ||

@@ -2,5 +2,22 @@
 
 
 .product-image-box {
-    @apply border-[#E0E0E0] border-2 rounded-md pt-[38px] pb-[36px] px-[33px] w-full
+    @apply border-[#E0E0E0] border-2 rounded-md pt-[38px] pb-[36px] px-[33px] w-full;
+
+    h2 {
+        @apply mb-[5px];
+    }
+
+    p {
+        @apply text-[12px] text-tertiary font-[400] mb-[30px];
+    }
+
+    .product-image-container {
+        @apply flex items-center justify-center;
+    }
+
+    .product-image-container img {
+        @apply w-[127px];
+    }
+
 }

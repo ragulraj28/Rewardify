@@ -2,5 +2,5 @@
 
 
 .delivery-details-product-image-container {
-    @apply flex gap-[44px] items-center justify-center
+    @apply flex gap-[44px] flex-wrap lg:flex-nowrap items-center justify-center
 }

@@ -10,21 +10,51 @@ import NoProductAdded from "../NoProductAdded";
 import ProductDetails from "./ProductDetails";
 import ProductInformation from "./ProductInformation";
 import DeliveryDetailsProductImage from "./DeliveryDetailsProductImage";
-import { useSelector } from "react-redux";
 import { FormProvider, useForm } from "react-hook-form";
 import Button from "../../common/button/Button";
+import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToStockProducts,
+  selectProduct,
+} from "../../../utils/slices/productSlice";
 
-const AddAProduct = () => {
+const AddAProduct = ({}) => {
   const methods = useForm();
-  const { handleSubmit } = methods;
+  const { handleSubmit, reset, getValues } = methods;
+  const navigate = useNavigate();
+  const stockProducts = useSelector((state) => state.products.stockProducts);
+  const dispatch = useDispatch();
+  const productAlreadyExist = {};
+
   const onSubmit = (data) => {
+    const values = getValues();
     console.log("Submitted:", data);
+    console.log(stockProducts);
+    const productExists = stockProducts.some(
+      (product) => product.productName === data.productName
+    );
+
+    if (productExists) {
+      alert("This product already exists in the list.");
+    } else {
+      dispatch(addToStockProducts(data));
+      dispatch(selectProduct(null));
+      navigate("/products");
+    }
+    // dispatch(addToStockProducts(data));
+    console.log("product Description: ", values.productDescription);
+    // dispatch(selectProduct(null));
+    // navigate("/products");
   };
 
-  const { allProducts } = useSelector((state) => state.products);
-  const [products, setProducts] = useState(allProducts);
-  console.log(allProducts);
+  // const { allProducts } = useSelector((state) => state.products);
+  // const [products, setProducts] = useState(allProducts);
+
   // setProducts(allProducts);
+  // function handleProductSubmit(data) {
+  //   console.log("productsubmited" + data);
+  // }
 
   return (
     <div className="add-a-product">

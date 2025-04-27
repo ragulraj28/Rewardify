@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
 import "./ProductDetailsForm.css";
-import { useSelector } from "react-redux";
-import { useFormContext, useWatch } from "react-hook-form";
+import { useSelector, useDispatch } from "react-redux";
+import { useFormContext } from "react-hook-form";
+import { selectProduct } from "../../../utils/slices/productSlice";
 
-const product_category = [
-  "Fruits & Vegetable's",
-  "Dairy, Bread and Eggs",
-  "Snacks and Biscuits",
-  "Atta, Dal and Rice",
-  "Dry fruits and Masala",
-  "Tea, Coffee and more",
-  "Chocolate and Desserts",
+const discountType = ["Special Discount", "10% Discount"];
+const unitOfMeasurement = [
+  "One Unit",
+  "One Pack",
+  "Gram",
+  "Kilogram",
+  "Millilitre",
+  "Litre",
 ];
 const ProductDetailsForm = () => {
-  const { register, control, getValues, watch } = useFormContext();
-  const [selected, setSelected] = useState("");
+  const { register, setValue, watch, formState } = useFormContext();
+  const { errors } = formState;
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const { allProducts } = useSelector((state) => state.products);
   const [products, setProducts] = useState(allProducts);
+  const dispatch = useDispatch();
 
   const categories = [
     ...new Set(products.map((data) => data?.productCategory?.name)),
@@ -26,21 +29,32 @@ const ProductDetailsForm = () => {
 
   const categoryname = watch("categoryName");
 
-  useEffect(() => {
-    if (categoryname) {
-      console.log("Selected Category:", categoryname);
-    }
-  }, [categoryname]);
-
-  // useEffect(() => {
-  //   if (categoryName) {
-  //     console.log("Selected Category:", categoryName);
-  //   }
-  // }, [categoryName]);
-
   const produtsList = products
     .filter((product) => product.productCategory.name.includes(categoryname))
-    .map((product) => product.name);
+    .map((product) => product);
+
+  // const productid = products.find((product) => product._id === selectedProduct);
+  // console.log(productid);
+  useEffect(() => {
+    dispatch(
+      selectProduct(
+        products.find((product) => product.name === selectedProduct)
+      )
+    );
+  }, [selectedProduct]);
+  useEffect(() => {
+    setValue("productName", "");
+  }, [setValue, categoryname]);
+  // console.log(productid);
+  // useEffect(() => {
+  //   const subscription = watch((values, { name, type }) => {
+  //     console.log("Form values changed:", values);
+  //     console.log("Change originated from:", name);
+  //     console.log("Event type:", type);
+  //   });
+
+  //   return () => subscription.unsubscribe();
+  // }, [watch]);
 
   // const categoryName = products
   //   .filter((product) =>
@@ -51,7 +65,7 @@ const ProductDetailsForm = () => {
   return (
     <div className="product-details-form">
       <div className="product-details-form-row one">
-        <div className="product-details-form-col product-category relative w-64 ">
+        <div className="product-details-form-col product-category relative  ">
           <select
             {...register("categoryName")}
             className={`product-details-select ${
@@ -116,11 +130,12 @@ const ProductDetailsForm = () => {
           </div>
           <select
             {...register("productName")}
-            className={`product-name-select pl-4 ${
-              selected === "" ? "text-[#bebebe]" : "text-[#000]"
-            } `}
-            onChange={(e) => setSelected(e.target.value)}
-            id=""
+            className={`product-name-select pl-4 `}
+            onChange={(e) => {
+              setSelectedProduct(e.target.value);
+              console.log(e.target.value);
+            }}
+            id="productName"
           >
             <option
               value=""
@@ -131,9 +146,9 @@ const ProductDetailsForm = () => {
             >
               Select Product
             </option>
-            {produtsList.map((productname, index) => (
-              <option className="value" value={productname} key={index}>
-                {productname}
+            {produtsList.map((product, index) => (
+              <option className="value" value={product.name} key={product._id}>
+                {product.name}
               </option>
             ))}
           </select>
@@ -143,15 +158,19 @@ const ProductDetailsForm = () => {
         <div className="product-details-form-col ">
           <input
             type="text"
+            {...register("productMRP", {
+              required: { value: true, message: "product MRP is required" },
+            })}
             className="product-details-product-mrp "
             placeholder="Product MRP"
           />
-        </div>
+          <p className="text-red">{errors.productMRP?.message}</p>
+        </div>{" "}
         <div className="product-details-form-col relative">
           <div className="inner-section-two-col">
             <div className="product-detials-two-col relative">
               <select
-                name="product_category"
+                {...register("discountType")}
                 className="product-details-select"
                 id=""
               >
@@ -164,8 +183,10 @@ const ProductDetailsForm = () => {
                 >
                   Discount type
                 </option>
-                {product_category.map((category, index) => (
-                  <option key={index}>{category}</option>
+                {discountType.map((discount, index) => (
+                  <option key={index} value={discount}>
+                    {discount}
+                  </option>
                 ))}
               </select>
               <div className="product-details-arrow-container">
@@ -185,7 +206,7 @@ const ProductDetailsForm = () => {
             </div>
             <div className="product-detials-two-col">
               <input
-                type="text"
+                type="number"
                 className="product-details-product-mrp "
                 placeholder="Discount Value"
               />
@@ -197,13 +218,16 @@ const ProductDetailsForm = () => {
         <div className="product-details-form-col ">
           <input
             type="text"
+            {...register("productPrice", {
+              required: { value: true, message: "Product Price Required" },
+            })}
             className="product-details-product-mrp "
             placeholder="Product Price"
           />
         </div>
-        <div className="product-details-form-col product-category relative w-64 ">
+        <div className="product-details-form-col product-category relative ">
           <select
-            name="product_category"
+            {...register("unitOfMeasurement")}
             className="product-details-select"
             id=""
           >
@@ -216,8 +240,10 @@ const ProductDetailsForm = () => {
             >
               UOM(unit of measurement)
             </option>
-            {product_category.map((category, index) => (
-              <option key={index}>{category}</option>
+            {unitOfMeasurement.map((uom, index) => (
+              <option key={index} value={uom}>
+                {uom}
+              </option>
             ))}
           </select>
           <div className="product-details-arrow-container">
@@ -240,6 +266,9 @@ const ProductDetailsForm = () => {
         <div className="product-details-form-col ">
           <input
             type="text"
+            {...register("productSize", {
+              required: { value: "true", message: "Product Size is Required" },
+            })}
             className="product-details-product-mrp "
             placeholder="Product Size(Enter the size of each Product)"
           />
@@ -247,6 +276,9 @@ const ProductDetailsForm = () => {
         <div className="product-details-form-col ">
           <input
             type="text"
+            {...register("abailableQuantity", {
+              required: { value: true, message: "Available Quantity Required" },
+            })}
             className="product-details-product-mrp "
             placeholder="Available Quantity"
           />

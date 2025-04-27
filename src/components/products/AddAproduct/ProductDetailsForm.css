@@ -3,11 +3,11 @@
 
 
 .product-details-form-row {
-    @apply flex gap-[40px] mb-[20px]
+    @apply flex gap-[20px] lg:gap-[40px] mb-[20px] flex-wrap lg:flex-nowrap
 }
 
 .product-details-form-row .product-details-form-col {
-    @apply basis-1/2
+    @apply basis-full lg:basis-1/2 flex flex-col
 }
 
 .product-details-form-row .product-details-form-col select.product-details-select {
@@ -57,5 +57,5 @@ input.product-details-product-mrp {
 }
 
 .product-detials-two-col {
-    @apply basis-1/2
+    @apply basis-[100%] lg:basis-1/2
 }
