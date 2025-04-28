@@ -1,9 +1,9 @@
 import './Checkbox.css'
 
-const Checkbox = ({id, labelText}) => {
+const Checkbox = ({id, labelText, ...register}) => {
   return (
     <div className="checkbox-input">
-      <input type="checkbox" id={id} /> 
+      <input type="checkbox" {...register} id={id} /> 
       <label htmlFor={id}>{labelText}</label>
     </div>
   )

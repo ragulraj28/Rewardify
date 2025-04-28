@@ -10,18 +10,7 @@ import { usePopup } from '../../../utils/popupContext/PopupContext';
 import { useNavigate } from 'react-router';
 import { set, useForm } from 'react-hook-form';
 import { useState } from 'react';
-
-const Card = ({title, excerpt, children}) => {
-    return(
-        <div className="contact-page-card">
-            <h2 className='page-title'>
-                {title}
-            </h2>
-            <p className="excerpt">{excerpt}</p>
-            {children}
-        </div>
-    )
-}
+import Card from '../common/cardLayout/Card';
 
 const popup = (hidePopup) => {
     return (
@@ -42,21 +31,9 @@ const Contact = () => {
 
     const submitHandler = async (data) => {        
         
-        try {
-
-            await api.post('v1/store-user/contact-form', {
-                contactNo: Number(data.phoneNumber),
-                dialcode: 91,
-                location: data.shopLocation,
-                ownerName: data.ownerName,
-                shopName: data.shopName
-            });
-            setIsSubmitted(true);
-            showPopup(popup(hidePopup));            
-
-        } catch(err) {
-            console.error(err);
-        }
+        console.log(data);
+        setIsSubmitted(true);
+        showPopup(popup(hidePopup));
        
     }
 

@@ -1,6 +1,6 @@
 import { UploadIcon } from "../../../assets/icons/icon";
 
-const UploadImage = ({image, setImage}) => {
+const UploadImage = ({image, setImage, ...registerProps}) => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -21,8 +21,12 @@ const UploadImage = ({image, setImage}) => {
                 <UploadIcon />
                 <input
                   type="file"
+                  {...registerProps}
                   accept="image/*"
-                  onChange={handleImageChange}
+                  onChange={e =>{
+                    registerProps.onChange(e);
+                    handleImageChange(e);
+                  }}
                   className="hidden"
                 />
               </label>

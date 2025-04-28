@@ -15,3 +15,9 @@ input {
     @apply text-secondary;
     
 }
+
+.form-error {
+
+    @apply text-left text-red-500 text-xs;
+    
+}

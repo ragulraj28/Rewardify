@@ -77,24 +77,6 @@
 
         }
 
-        .contact-page-card {
-
-            @apply border border-border-color rounded-xl py-6.5 px-7 w-full;
-
-            .excerpt {
-
-                @apply mb-0 max-w-[320px] mx-auto;
-
-            }
-
-            .excerpt + .btn {
-
-                @apply mt-10;
-
-            }
-
-        }
-
         .contact-page-card + .contact-page-card {
 
             @apply mt-10;

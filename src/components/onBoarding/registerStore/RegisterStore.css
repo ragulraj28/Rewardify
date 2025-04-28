@@ -82,7 +82,7 @@
 
                 .card-header {
 
-                    @apply mb-4;
+                    @apply mb-4 flex flex-col items-start;
 
                     .card-title {
     
@@ -194,6 +194,24 @@
         
                 }
         
+            }
+
+        }
+
+    }
+
+    .thankyou {
+
+        @apply max-w-[483px] w-full mx-auto;
+
+        .acknowledgement {
+
+            @apply mb-24 flex flex-col items-center;
+
+            img {
+
+                @apply h-42 mb-11;
+
             }
 
         }
