@@ -207,6 +207,7 @@ const ProductDetailsForm = () => {
             <div className="product-detials-two-col">
               <input
                 type="number"
+                {...register("discountValue")}
                 className="product-details-product-mrp "
                 placeholder="Discount Value"
               />
@@ -240,8 +241,8 @@ const ProductDetailsForm = () => {
             >
               UOM(unit of measurement)
             </option>
-            {unitOfMeasurement.map((uom, index) => (
-              <option key={index} value={uom}>
+            {unitOfMeasurement.map((uom) => (
+              <option key={uom} value={uom}>
                 {uom}
               </option>
             ))}

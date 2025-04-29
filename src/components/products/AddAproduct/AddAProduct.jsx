@@ -9,6 +9,7 @@ import AddAProductBtn from "../AddAProductBtn";
 import NoProductAdded from "../NoProductAdded";
 import ProductDetails from "./ProductDetails";
 import ProductInformation from "./ProductInformation";
+import Products from "../Products";
 import DeliveryDetailsProductImage from "./DeliveryDetailsProductImage";
 import { FormProvider, useForm } from "react-hook-form";
 import Button from "../../common/button/Button";
@@ -21,11 +22,10 @@ import {
 
 const AddAProduct = ({}) => {
   const methods = useForm();
-  const { handleSubmit, reset, getValues } = methods;
+  const { register, handleSubmit, reset, getValues } = methods;
   const navigate = useNavigate();
   const stockProducts = useSelector((state) => state.products.stockProducts);
   const dispatch = useDispatch();
-  const productAlreadyExist = {};
 
   const onSubmit = (data) => {
     const values = getValues();
@@ -72,6 +72,7 @@ const AddAProduct = ({}) => {
             <ProductDetails />
             <ProductInformation />
             <DeliveryDetailsProductImage />
+            <input {...register("availability")} value="true" disabled hidden />
             <div className="savebtn-container">
               <Button type="submit" btnText="Save Product" />
             </div>

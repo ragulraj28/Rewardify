@@ -7,7 +7,7 @@
 }
 
 .product-details-form-row .product-details-form-col {
-    @apply basis-full lg:basis-1/2 flex flex-col
+    @apply basis-[100%] lg:basis-1/2 flex flex-col
 }
 
 .product-details-form-row .product-details-form-col select.product-details-select {

@@ -29,8 +29,8 @@ const ProductImagebox = () => {
       <div className="product-image-container">
         <input
           {...register("productImage")}
-          id={selectedProduct?.images[0]}
-          value={selectedProduct?.images[0]}
+          id="productImage"
+          defaultValue={selectedProduct?.images[0]}
           onChange={(e) => setValue("productImage", e.targetValue)}
           hidden
         />

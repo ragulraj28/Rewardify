@@ -6,6 +6,10 @@ import UploadIcon from "./upload.svg?react";
 import ScannerIcon from "./scanner.svg?react";
 import MenuIcon from "./menu.svg?react";
 import AddIcon from "./add.svg?react";
+import LeftIcon from "./left-arrow.svg?react";
+import DownArrowIcon from "./down-arrow-icon.svg?react";
+import UpArrowIcon from "./uparrow.svg?react";
+import DeleteIcon from "./delete.svg?react";
 
 export {
   ChevronIcon,
@@ -16,4 +20,7 @@ export {
   ScannerIcon,
   MenuIcon,
   AddIcon,
+  LeftIcon,
+  DownArrowIcon,
+  DeleteIcon,
 };

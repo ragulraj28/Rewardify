@@ -1,17 +1,17 @@
 @import './index.css';
 
-*{ 
+* {
     font-family: "Inter", sans-serif;
 }
 
 button {
 
     cursor: pointer;
-    
+
 }
 
 input {
 
-    @apply text-secondary;
-    
+    @apply text-secondary box-border;
+
 }

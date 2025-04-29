@@ -12,10 +12,11 @@ import ProtectedRoute from "./utils/protectedRoute/ProtectedRoute";
 import RegisterStore from "./components/onBoarding/registerStore/RegisterStore";
 import PostLoginLayout from "./components/postLoginLayout/PostLoginLayout";
 import AddAProduct from "./components/products/AddAProduct/AddAProduct";
+import EditProductForm from "./components/products/AddAProduct/EditProductForm";
 
 const App = () => {
   return (
-    <Provider store={store}>
+    
       <BrowserRouter>
         <Routes>
           <Route index element={<Login />} />
@@ -33,11 +34,12 @@ const App = () => {
             <Route path="products" element={<Products />} />
             <Route path="profile" element={<Profile />} />
             <Route path="add-product" element={<AddAProduct />} />
+            <Route path="edit-product" element={<EditProductForm />} />
           </Route>
           <Route path="*" element={<h1>404 page Not Found</h1>} />
         </Routes>
       </BrowserRouter>
-    </Provider>
+   
   );
 };
 

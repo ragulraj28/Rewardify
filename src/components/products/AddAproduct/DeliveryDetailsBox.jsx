@@ -10,7 +10,7 @@ const deliveryType = [
 ];
 
 const DeliveryDetailsBox = () => {
-  const { register, control, getValues, watch } = useFormContext();
+  const { register } = useFormContext();
   return (
     <div className="delivery-details-box">
       <ProductDetailsHeading>Delivery Details</ProductDetailsHeading>
