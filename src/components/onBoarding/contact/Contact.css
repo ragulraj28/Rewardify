@@ -77,7 +77,7 @@
 
         }
 
-        .contact-page-card + .contact-page-card {
+        .card + .card {
 
             @apply mt-10;
 

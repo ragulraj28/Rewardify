@@ -1,18 +1,22 @@
+@import '../../../index.css';
+
 .transaction {
     background-color: white;
     width: 100%;
-    max-width: 500px;
     padding: 24px;
     border-radius: 12px;
 }
 .transaction_head .head_title{
     display: flex;
     justify-content: space-between;
-    height: 42px;
     align-items: center;
-    margin-top: 25px;
-    padding-bottom: 8px;
-    margin-left: 24px;
+
+    button {
+
+      padding: 0px;
+
+    }
+
 }
 .transaction_head .head_title h2{
     font-family: Inter;
@@ -29,38 +33,26 @@
     margin-right: 20px;
 }
 .transaction_head p{
-    font-family: Inter;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 100%;
-    letter-spacing: 0px;
-    padding-left: 25px;
-    margin-top: 9px;
-    color: rgba(134, 140, 154, 1);
+
+  @apply text-xs mt-2 text-tertiary;
+
 }
-.transaction_head ul li{
-    list-style: none;
-    font-family: Inter;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 100%;
-    letter-spacing: 0px;
-    color: rgba(134, 140, 154, 1);
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
+
 .transaction_head ul{
     display: flex;
     flex-direction: row;
-    width: 236px;
     gap: 32px;
     margin-top: 25px;
-    height: 27px;
-    margin-left: 24px;
+    height: 30px;
+
+  li {
+
+    @apply text-tertiary;
+
+  }
+
 }
+
 .transaction_head ul li:hover{
     color: rgba(3, 4, 1, 1);
     cursor: pointer;
@@ -78,29 +70,22 @@
     display: block;
 }
 .allTransaction {
-    width: 457px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    position: relative;
-    padding: 16px 0;
-    flex-wrap: wrap;
-  }
-  
+
+  @apply w-full flex py-4 border-b border-border-color last:border-none;
+
   .payment {
-    display: flex;
-    margin-left: -40px;
-    flex: 1;
-    flex-wrap: wrap;
-    padding-left: 24px;
+
+    @apply w-full flex flex-col sm:flex-row gap-5 justify-between;
+
   }
+   
+}
   
   .payment_logo button {
     width: 44px;
     height: 44px;
     border-radius: 100%;
     background: rgba(242, 248, 223, 1);
-    margin: 16px;
     padding: 10px;
     display: flex;
     align-items: center;
@@ -111,10 +96,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex: 1;
-    min-width: 180px;
-    padding-top: 12px;
-    padding-bottom: 10px;
+    flex-grow: 1;
   }
   
   .payment_info h4 {
@@ -147,8 +129,6 @@
     font-weight: 500;
     font-size: 14px;
     color: rgba(25, 135, 84, 1);
-    padding-top: 25px;
-    padding-left: 30px;
     white-space: nowrap;
   }
   

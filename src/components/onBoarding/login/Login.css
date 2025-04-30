@@ -44,9 +44,9 @@
 
         }
 
-        .btn {
+        .btn + .btn {
 
-            @apply mb-3 last:mb-0;
+            @apply mt-3;
 
         }
 

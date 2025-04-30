@@ -6,13 +6,7 @@
 
     .excerpt {
 
-        @apply mb-0 max-w-[320px] mx-auto;
-
-    }
-
-    .excerpt + .btn {
-
-        @apply mt-10;
+        @apply max-w-[320px] mx-auto;
 
     }
 

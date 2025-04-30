@@ -34,7 +34,7 @@ const Transaction = () => {
         </ul>
       </div>
 
-      <div className='allTransaction'>
+      <div className='transaction-tab-container'>
         {activeTab === 'all' ? (
           transactiondetails.map((e, index) => (
             <AllTransaction

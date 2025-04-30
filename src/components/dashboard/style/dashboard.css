@@ -1,18 +1,15 @@
+@import '../../../index.css';
+
 .dashboard {
     
   .body {
 
-    display: flex;
-    gap: 24px;
-    width: 100%;
-    height: 100%;
+    @apply flex flex-col xl:flex-row gap-6 w-full;
 
     .body_part1 {
 
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      
+      @apply flex flex-col gap-6;
+
     }
 
   }
@@ -30,9 +27,6 @@
 
 }
 @media (max-width:767px){
-  .body{
-    flex-wrap: wrap;
-  }
   .whatsapp {
     position: absolute;
     right: 32px;
