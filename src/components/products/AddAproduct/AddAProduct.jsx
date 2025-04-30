@@ -74,7 +74,7 @@ const AddAProduct = ({}) => {
             <DeliveryDetailsProductImage />
             <input {...register("availability")} value="true" disabled hidden />
             <div className="savebtn-container">
-              <Button type="submit" btnText="Save Product" />
+              <Button btnType="submit" btnText="Save Product" />
             </div>
           </form>
         </FormProvider>

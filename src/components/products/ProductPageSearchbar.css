@@ -5,7 +5,7 @@
 
 
 .product-page-searchbar {
-    @apply border-[#ECECEC] border-[2px] flex align-middle rounded-[6px] max-w-[359px] md:w-[359px] h-[46px]
+    @apply border-[#ECECEC] border-[2px] flex align-middle rounded-[6px] max-w-[359px] w-full h-fit
 }
 
 .searchbar {
@@ -13,7 +13,7 @@
 }
 
 .product-page-searchbar input {
-    @apply text-[14px] text-black ml-[8px] basis-[90%] p-[10px] focus:outline-none
+    @apply text-[14px] text-secondary ml-[8px] basis-[90%] p-[10px] focus:outline-none
 }
 
 /* .product-page-searchbar input:focus {

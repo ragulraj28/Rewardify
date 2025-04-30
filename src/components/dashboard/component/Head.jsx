@@ -47,6 +47,7 @@ const Head = () => {
         </div>
       </div>
     </div>
+    </div>
   );
 };
 

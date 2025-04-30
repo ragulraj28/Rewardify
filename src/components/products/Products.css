@@ -12,7 +12,7 @@
 }
 
 .table-productname-headerleft {
-    @apply basis-[20%] text-center text-[14px] text-primary;
+    @apply basis-[20%] text-[14px] text-primary;
 }
 
 .table-productname-headerright {

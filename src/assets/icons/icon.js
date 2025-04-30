@@ -10,6 +10,7 @@ import LeftIcon from "./left-arrow.svg?react";
 import DownArrowIcon from "./down-arrow-icon.svg?react";
 import UpArrowIcon from "./uparrow.svg?react";
 import DeleteIcon from "./delete.svg?react";
+import SeaarchIcon from "./search.svg?react";
 
 export {
   ChevronIcon,
@@ -23,4 +24,6 @@ export {
   LeftIcon,
   DownArrowIcon,
   DeleteIcon,
+  UpArrowIcon,
+  SeaarchIcon
 };

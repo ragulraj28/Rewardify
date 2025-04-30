@@ -28,15 +28,14 @@ const Products = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const stockProducts = useSelector((state) => state.products.stockProducts);
+  const { accessToken } = useSelector( state => state.auth );
   const [isOpen, setIsOpen] = useState("");
   const { showPopup, hidePopup } = usePopup();
   const [selectedAction, setSelectedAction] = useState("");
 
   useEffect(() => {
     fetchProducts();
-  }, []);
-
-  console.log("stock products:", stockProducts);
+  }, [accessToken]);
 
   const groupedProducts = stockProducts.reduce((acc, product) => {
     if (!acc[product.categoryName]) {
@@ -47,26 +46,18 @@ const Products = () => {
   }, {});
 
   const fetchProducts = async () => {
-    // const res = await api.fetch(
-    //   `https://rewardify.dotcod.in/api/v1/store-user/master/products/list`
-    // );
-    // console.log(res);
 
     try {
       const response = await api.post(`/v1/store-user/master/products/list`);
-      // console.log(response?.data?.data);
-      // console.log(response?.data?.data);
       dispatch(setProducts(response?.data?.data));
     } catch (err) {
       console.error("Error fetching data:", err);
     }
+
   };
   function handleAddProduct() {
-    // console.log("button clicked");
     navigate("/add-product");
   }
-
-  // const [isToggled, setIsToggled] = useState(false);
 
   const toggleHandler = (product) => {
     // dispatch(updateAvailability(availability, productName));
@@ -144,18 +135,17 @@ const Products = () => {
       {stockProducts.length === 0 ? (
         <NoProductAdded />
       ) : (
-        <div>
+        <>
           {Object.keys(groupedProducts).map((category) => (
             <div
               key={category}
-              className="mb-6 border border-border-color p-2 rounded transform transition transition-discrete
- duration-300 translate-x-6"
+              className="mb-6 border border-border-color p-5 rounded"
             >
               <div
                 className="flex justify-between items-middle cursor-pointer"
                 onClick={() => setIsOpen(isOpen === category ? "" : category)}
               >
-                <div className="p-2">
+                <div className="py-2">
                   <h2 className="text-2xl font-semibold">{category}</h2>
                 </div>
                 <div className="p-2 flex items-center justify-center">
@@ -170,10 +160,10 @@ const Products = () => {
               </div>
               <div
                 className={`space-y-4  ${
-                  isOpen === category ? "block" : "hidden"
+                  isOpen === category ? "block overflow-x-auto" : "hidden"
                 }`}
               >
-                <div claName="product-listing-tablecontainer">
+                <div className="product-listing-tablecontainer min-w-[856px]">
                   <div className="product-listing-table ">
                     <div className="table-productname-headerleft text-tertiary">
                       <h3 className="text-tertiary">Product Name</h3>
@@ -195,10 +185,10 @@ const Products = () => {
                   </div>
                 </div>
                 {groupedProducts[category].map((product) => (
-                  <div key={product.productName} className="p-4  rounded-md ">
+                  <div key={product.productName} className="py-4 rounded-md min-w-[856px]">
                     <div className="product-listing-table">
                       <div className="table-productname-headerleft ">
-                        <h3 className="truncate  md:w-[100px] lg:w-[210px]">
+                        <h3 className="truncate  w-[100px] lg:w-[210px]">
                           {product.productName}
                         </h3>
                       </div>
@@ -281,7 +271,7 @@ const Products = () => {
               </div>
             </div>
           ))}
-        </div>
+        </>
       )}
     </div>
   );

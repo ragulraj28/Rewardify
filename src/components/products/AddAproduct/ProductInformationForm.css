@@ -3,7 +3,7 @@
 
 
 .product-details-form-row {
-    @apply flex gap-[40px] mb-[20px]
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-10 mb-5
 }
 
 .product-details-form-row .product-details-form-col {
@@ -11,7 +11,7 @@
 }
 
 .product-information-description {
-    @apply basis-full
+    @apply col-span-2
 }
 
 .product-information-description textarea {

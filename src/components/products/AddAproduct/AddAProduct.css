@@ -10,6 +10,6 @@
     @apply mt-4 flex justify-center;
 
     button {
-        @apply w-[50%]
+        @apply  w-full lg:w-1/2
     }
 }

@@ -3,6 +3,7 @@ import "./ProductDetailsForm.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useFormContext } from "react-hook-form";
 import { selectProduct } from "../../../utils/slices/productSlice";
+import { ChevronIcon, SeaarchIcon } from "../../../assets/icons/icon";
 
 const discountType = ["Special Discount", "10% Discount"];
 const unitOfMeasurement = [
@@ -16,7 +17,7 @@ const unitOfMeasurement = [
 const ProductDetailsForm = () => {
   const { register, setValue, watch, formState } = useFormContext();
   const { errors } = formState;
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState("");
   const { allProducts } = useSelector((state) => state.products);
   const [products, setProducts] = useState(allProducts);
   const dispatch = useDispatch();
@@ -89,51 +90,18 @@ const ProductDetailsForm = () => {
             ))}
           </select>
           <div className="product-details-arrow-container">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path
-                d="M16.59 8.58984L12 13.1698L7.41 8.58984L6 9.99984L12 15.9998L18 9.99984L16.59 8.58984Z"
-                fill="#BEBEBE"
-              />
-            </svg>
+            <ChevronIcon className={'rotate-90 text-tertiary'}/>
           </div>
         </div>
         <div className="product-details-form-col relative">
-          <div class="product-details-search-icon-container">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path
-                d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
-                stroke="#BEBEBE"
-                stroke-width="1.66678"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M21.0004 21.0004L16.6499 16.6499"
-                stroke="#BEBEBE"
-                stroke-width="1.66678"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+          <div className="product-details-search-icon-container">
+            <SeaarchIcon />
           </div>
           <select
             {...register("productName")}
             className={`product-name-select pl-4 `}
             onChange={(e) => {
               setSelectedProduct(e.target.value);
-              console.log(e.target.value);
             }}
             id="productName"
           >
@@ -190,18 +158,7 @@ const ProductDetailsForm = () => {
                 ))}
               </select>
               <div className="product-details-arrow-container">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M16.59 8.58984L12 13.1698L7.41 8.58984L6 9.99984L12 15.9998L18 9.99984L16.59 8.58984Z"
-                    fill="#BEBEBE"
-                  />
-                </svg>
+                <ChevronIcon className={'rotate-90 text-tertiary'}/>
               </div>
             </div>
             <div className="product-detials-two-col">
@@ -248,18 +205,7 @@ const ProductDetailsForm = () => {
             ))}
           </select>
           <div className="product-details-arrow-container">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path
-                d="M16.59 8.58984L12 13.1698L7.41 8.58984L6 9.99984L12 15.9998L18 9.99984L16.59 8.58984Z"
-                fill="#BEBEBE"
-              />
-            </svg>
+            <ChevronIcon className={'rotate-90 text-tertiary'}/>
           </div>
         </div>
       </div>

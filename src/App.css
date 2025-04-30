@@ -12,8 +12,14 @@ button {
 
 input {
 
-    @apply text-secondary box-border;
+    @apply text-secondary box-border outline-none;
 
+}
+
+select {
+
+    @apply outline-none;
+    
 }
 
 .form-error {
