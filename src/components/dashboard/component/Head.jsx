@@ -1,18 +1,17 @@
-import React from 'react'
-import '../style/head.css'
-import rewardify from '../../../assets/rewardify.png'
-import goldCoin from '../../../assets/gold coin.png'
+import React from "react";
+import "../style/head.css";
+import rewardify from "../../../assets/rewardify.png";
+import goldCoin from "../../../assets/gold coin.png";
 import { FaRegBell } from "react-icons/fa";
 import { MdOutlinePersonOutline } from "react-icons/md";
 import { FaHandHoldingDollar } from "react-icons/fa6";
-import { useDispatch, useSelector } from 'react-redux';
-import { MenuIcon } from '../../../assets/icons/icon';
-import { toggleSidebar } from '../../../utils/slices/sidebarSlice';
+import { useDispatch, useSelector } from "react-redux";
+import { MenuIcon } from "../../../assets/icons/icon";
+import { toggleSidebar } from "../../../utils/slices/sidebarSlice";
 
-const Head = () => { 
-
-  const{ user } = useSelector(state => state.auth);
-  const dispatch = useDispatch()
+const Head = () => {
+  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const coin_btn = {
       
@@ -30,7 +29,7 @@ const Head = () => {
   }
   const menuToggle = () => {
     dispatch(toggleSidebar());
-  }
+  };
 
   return (
     <div className='db_head'>
@@ -48,8 +47,7 @@ const Head = () => {
         </div>
       </div>
     </div>
-</div>
-  )
-}
+  );
+};
 
 export default Head

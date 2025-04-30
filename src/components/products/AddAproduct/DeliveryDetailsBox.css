@@ -1,0 +1,29 @@
+@import "../../../index.css";
+
+.delivery-details-box {
+    @apply border-[#E0E0E0] border-2 rounded-md pt-[38px] pb-[36px] px-[33px] w-full;
+}
+
+.delivery-type-box {
+    @apply border border-border-color rounded-[6px] p-[19px];
+
+    h3.delivery-type-heading {
+        @apply text-[18px] font-[400] mb-[12px] text-secondary;
+    }
+
+    p.deliverytype-subtext {
+        @apply text-tertiary text-[12px] mb-[25px];
+    }
+
+    div.delivery-type-input {
+        @apply flex items-center mb-[10px];
+    }
+
+    div.delivery-type-input input {
+        @apply mr-[6px];
+    }
+
+    div.delivery-type-input label {
+        @apply text-[16px] text-tertiary;
+    }
+}

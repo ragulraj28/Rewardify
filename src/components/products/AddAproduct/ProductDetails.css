@@ -1,0 +1,6 @@
+@import "../../../index.css";
+
+
+.product-details {
+    @apply px-[33px] py-[38px] border-[#E0E0E0] border-[1px] rounded-[8px] pb-[10px] mb-[38px]
+}

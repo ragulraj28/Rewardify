@@ -1,0 +1,13 @@
+@import "../../index.css";
+
+.addaproduct-btn {
+    @apply w-[100%] md:w-[339px] max-w-[339px] text-center mt-[10px] md:mt-[16px];
+}
+
+.add-product-btn {
+    @apply flex items-center px-[30px] py-[14px] text-[18px] font-[600] bg-gradient-to-r from-[#668D12] to-[#ACC43F] text-[#fff] rounded-[8px] cursor-pointer w-full justify-center;
+
+    svg {
+        @apply mr-[4px]
+    }
+}

@@ -1,5 +1,5 @@
-import React from 'react'
-import './Button.css'
+import React from "react";
+import "./Button.css";
 
 const Button = ({btnText, btnType = 'button', icon, iconPosition='left', btnStyle='fill', onClick}) => {
   return (
@@ -7,7 +7,7 @@ const Button = ({btnText, btnType = 'button', icon, iconPosition='left', btnStyl
         { icon && <div className="icon">{icon}</div> }
         <span>{btnText}</span>
     </button>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;

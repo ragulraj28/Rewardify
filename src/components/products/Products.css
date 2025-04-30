@@ -1,0 +1,24 @@
+@import "../../index.css";
+
+
+
+
+.products {
+    @apply bg-white rounded-[12px] px-[40px] py-[24px]
+}
+
+.product-listing-table {
+    @apply flex items-center
+}
+
+.table-productname-headerleft {
+    @apply basis-[20%] text-center text-[14px] text-primary;
+}
+
+.table-productname-headerright {
+    @apply basis-[80%] flex justify-center items-center text-[14px];
+
+    .producttable-rightheading {
+        @apply basis-[20%] text-center
+    }
+}

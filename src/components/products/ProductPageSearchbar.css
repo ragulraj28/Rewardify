@@ -1,0 +1,21 @@
+@import "../../index.css";
+
+
+
+
+
+.product-page-searchbar {
+    @apply border-[#ECECEC] border-[2px] flex align-middle rounded-[6px] max-w-[359px] md:w-[359px] h-[46px]
+}
+
+.searchbar {
+    @apply flex align-middle w-full items-center pl-[10px]
+}
+
+.product-page-searchbar input {
+    @apply text-[14px] text-black ml-[8px] basis-[90%] p-[10px] focus:outline-none
+}
+
+/* .product-page-searchbar input:focus {
+    @apply border-0 border-amber-600
+} */

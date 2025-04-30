@@ -1,0 +1,15 @@
+@import "../../../index.css";
+
+
+
+.add-a-product {
+    /* @apply */
+}
+
+.savebtn-container {
+    @apply mt-4 flex justify-center;
+
+    button {
+        @apply w-[50%]
+    }
+}
