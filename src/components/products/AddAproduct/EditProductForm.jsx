@@ -96,6 +96,7 @@ const EditProductForm = () => {
                       message: "product MRP is required",
                     },
                   })}
+                  disabled
                   defaultValue={categoryName}
                   className="product-details-product-mrp bg-[#E0E0E0]"
                   placeholder="category Name"
@@ -164,6 +165,7 @@ const EditProductForm = () => {
                         message: "product MRP is required",
                       },
                     })}
+                    disabled
                     value={productName}
                     className="product-details-product-mrp pl-[43px] bg-[#E0E0E0]"
                     placeholder="Select Product"
@@ -273,11 +275,11 @@ const EditProductForm = () => {
                   {...register("unitOfMeasurement")}
                   className="product-details-select bg-[#E0E0E0]"
                   id=""
+                  disabled
                 >
                   <option
                     defaultValue={unitOfMeasurement}
                     className="placeholder text-[#E0E0E0]"
-                    disabled
                     selected
                     hidden
                   >
@@ -443,7 +445,7 @@ const EditProductForm = () => {
           </div>
         </div>
         <div className="savebtn-container">
-          <Button btnText={"Update Changes"} />
+          <Button btnText={"Update Changes"} btnType="submit" />
         </div>
       </form>
     </ProductPageTemplate>
