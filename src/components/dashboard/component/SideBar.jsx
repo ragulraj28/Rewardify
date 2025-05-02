@@ -16,7 +16,7 @@ const SideBar = () => {
   const storeName=selectedStore?.name?.split(" ").slice(0,2).join(" ");
   const storeImg=selectedStore?.images;
   const storeid=selectedStore?._id;
-  const { active } = useSelector(state => state.sidebar);
+  const active = useSelector(state => state.sidebar?.active);
   const winwidth = useResize();
   const dispatch = useDispatch();
 

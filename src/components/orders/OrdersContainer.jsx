@@ -1,23 +1,8 @@
 // src/features/orders/OrdersContainer.jsx
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { Outlet, NavLink } from 'react-router';
-import {
-  setConfirmation, setPreparing,
-  setPacked,        setCompleted
-} from '../../utils/slices/ordersSlice';
-import api from '../../utils/axios/axios';
 import './Orders.css';
 
 export default function OrdersContainer() {
-  const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   api.fetchConfirmationOrders().then(data => dispatch(setConfirmation(data)));
-  //   api.fetchPreparingOrders().then(data => dispatch(setPreparing(data)));
-  //   api.fetchPackedOrders().then(data => dispatch(setPacked(data)));
-  //   api.fetchCompletedOrders().then(data => dispatch(setCompleted(data)));
-  // }, [dispatch]);
 
   const tabs = [
     { to: 'confirmation', label: 'Confirmation' },

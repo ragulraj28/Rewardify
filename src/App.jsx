@@ -12,10 +12,10 @@ import RegisterStore from "./components/onBoarding/registerStore/RegisterStore";
 import PostLoginLayout from "./components/postLoginLayout/PostLoginLayout";
 import AddAProduct from "./components/products/AddAProduct/AddAProduct";
 import EditProductForm from "./components/products/AddAProduct/EditProductForm";
-import { ConfirmationPage } from './components/orders/ConfirmationPage';
-import { PreparingPage } from './components/orders/PreparingPage';
-import { PackedPage } from './components/orders/PackedPage';
-import { CompletedPage } from './components/orders/CompletedPage';
+import ConfirmationPage from './components/orders/ConfirmationPage';
+import PreparingPage from './components/orders/PreparingPage';
+import PackedPage from './components/orders/PackedPage';
+import CompletedPage from './components/orders/CompletedPage';
 import OrdersContainer from './components/orders/OrdersContainer';
 
 
@@ -50,11 +50,11 @@ const App = () => {
 
             {/* SEPARATE ORDERS PAGE */}
             <Route path="orders" element={<OrdersContainer />}>
-              <Route index element={<Navigate to="confirmation" replace />} />
-              <Route path="confirmation" element={<ConfirmationPage />} />
-              <Route path="preparing" element={<PreparingPage />} />
-              <Route path="packed" element={<PackedPage />} />
-              <Route path="completed" element={<CompletedPage />} />
+            <Route index element={<Navigate to="confirmation" replace />} />
+            <Route path="confirmation" element={<ConfirmationPage />} />
+            <Route path="preparing" element={<PreparingPage />} />
+            <Route path="packed" element={<PackedPage />} />
+            <Route path="completed" element={<CompletedPage />} />
             </Route>
 
             <Route path="products" element={<Products />} />

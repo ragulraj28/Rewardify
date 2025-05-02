@@ -1,64 +1,39 @@
-import React from 'react';
-import './Orders.css';
+import React from "react";
+import "./Orders.css";
+import { LocationIcon, PhoneBlackIcon } from "../../assets/icons/icon";
+import Button from "../common/button/Button";
 
-export default function OrderCard({
-  order, primaryText, secondaryText,
-  onPrimaryClick, onSecondaryClick,
-  showSecondary, isCompleted
-}) {
+const OrderCard = ({ order, btnConfig }) => {
+  
   return (
-    <div className={`order-card${isCompleted?' completed':''}`}>
-      <div className="card-header">
-        <span>Order ID: <strong>{order.id}</strong></span>
-        <span>Date: {order.date}</span>
-      </div>
-
-      <div className="card-body">
-        <p><strong>Order for:</strong> {order.customer.name}</p>
-        <p>📞 {order.customer.phone}</p>
-        <p>📍 {order.deliveryAddress}</p>
-        {order.pickupTime && <p>⏰ {order.pickupTime}</p>}
-
-        {order.timeline && (
-          <ul className="timeline">
-            {order.timeline.map((step,i)=>
-              <li key={i}>
-                <span className="dot"></span>
-                {step.label} <em>{step.date}|{step.time}</em>
-              </li>
-            )}
-          </ul>
-        )}
-
-        {!order.timeline && (
-          <div className="order-items">
-            {order.items.map((it,i)=>
-              <p key={i}>{it.quantity} x {it.name} — ₹{it.price}</p>
-            )}
+    <div key={order.id} className="order-card">
+          <div className="order-header">
+            <p className="order-id">Order ID: <strong>{order.id}</strong></p>
+            <p className="order-date">Date: {order.date}</p>
           </div>
-        )}
-
-        <p className="total">
-          <strong>Total Bill Amount:</strong> ₹{order.total}
-          <span className="payment-mode">PAID – {order.paymentMethod}</span>
-        </p>
-      </div>
-
-      {(primaryText||showSecondary) && (
-        <div className="card-actions">
-          {showSecondary && (
-            <button className="btn-outline" onClick={()=>onSecondaryClick(order.id)}>
-              {secondaryText}
-            </button>
-          )}
-          <button
-            className={`btn-${isCompleted?'approve':'primary'}`}
-            onClick={()=>onPrimaryClick(order.id)}
-          >
-            {primaryText}
-          </button>
+          <div className="order-details">
+            <div className="customer-details">
+            <span className="label">Order for:</span>
+              <p>{order.customerName}</p>
+              <div className="address-wrapper">
+                <p className="phone"><span className="icon"><PhoneBlackIcon /></span> {order.phone}</p>
+                <p className="address"><span className="icon"><LocationIcon /></span> {order.address}</p>
+              </div>
+            </div>
+            <div className="order-items">
+              <span className="label">Order items:</span>
+              {order.items.map((item, index) => (
+                <p key={index} className="item"><span>{item.quantity} x {item.name}</span> <span className="price">₹{item.price}</span></p>
+              ))}
+            </div>
+            <hr /> 
+            <p className="order-total"><span>Total Bill Amount <span className="paid-by">PAID - UPI</span></span> <span className="total-price">₹{order.total}</span></p>
+          </div>     
+          <div className="order-buttons">
+            {btnConfig?.map((btn, index) => <Button key={index} btnText={btn?.btnText} btnStyle={btn?.btnStyle} onClick={() => btn?.onClick(order.id)}/>)}
+          </div>
         </div>
-      )}
-    </div>
   );
-}
+};
+
+export default OrderCard;

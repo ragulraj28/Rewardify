@@ -16,67 +16,59 @@ import { useForm } from "react-hook-form";
 import { setStore } from "../../../utils/slices/storeSlice";
 
 const Login = () => {
-  const { initialAccessToken, accessToken, stores , isOrganizationUser } = useSelector(state => state.auth);
-  const selectedStoreRedux = useSelector(state => state.store.selectedStore)
+  const { initialAccessToken, accessToken, stores, isOrganizationUser } = useSelector(state => state.auth);
+  const selectedStoreRedux = useSelector(state => state.store.selectedStore);
   const [screen, setScreen] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState(Array(4).fill(""));
   const [secondsLeft, setSecondsLeft] = useState(null);
-  const[selectedStore, setSelectedStore] = useState(selectedStoreRedux);
+  const [selectedStore, setSelectedStoreLocal] = useState(selectedStoreRedux);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { register, handleSubmit, formState:{ errors} } = useForm();
-  
-  // Check if user is already authenticated and navigate to the correct page
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
   useEffect(() => {
-    if (accessToken && accessToken != "undefined" || initialAccessToken) {  
+    if ((accessToken && accessToken !== "undefined") || initialAccessToken) {
       authNavigation(stores, initialAccessToken);
-    }    
+    }
   }, []);
 
   useEffect(() => {
     if (screen === "otp" && secondsLeft === null) setSecondsLeft(55);
-    if (screen !== "otp") return;
-    if (secondsLeft === 0) return;
+    if (screen !== "otp" || secondsLeft === 0) return;
     const timer = setInterval(() => setSecondsLeft((s) => s - 1), 1000);
     return () => clearInterval(timer);
   }, [screen, secondsLeft]);
 
-  const authNavigation = (stores, token) => {    
-    
-    (selectedStore != null && accessToken) && navigate('dashboard');
-    
-    if ( token && stores.length > 0) {
-
-      if(stores.length < 2) {
-        
-        setSelectedStore(stores[0]);
-        dispatch(setStore(stores[0]));
-        if(!accessToken && isOrganizationUser) {
-          organizationUserToken();
-        }
-        accessToken && navigate('dashboard');
-
-      } else {
-        
-        setScreen('store');
-
-      }
-
-    } else {
-
-      setScreen('noStore');
-
+  const authNavigation = (stores, token) => {
+    if (selectedStoreRedux && accessToken) {
+      navigate("dashboard");
+      return;
     }
 
-  }
+    if (token && stores.length > 0) {
+      if (stores.length < 2) {
+        dispatch(setStore(stores[0]));
+        setSelectedStoreLocal(stores[0]);
+        if (!accessToken && isOrganizationUser) {
+          organizationUserToken(stores[0]);
+        }
+        if (accessToken) navigate("dashboard");
+      } else {
+        setScreen("store");
+      }
+    } else {
+      setScreen("noStore");
+    }
+  };
 
-  const generateOTP = async (data) => {   
+  const generateOTP = async (data) => {
     try {
       await api.post(GENERATE_OTP_URL, {
         dialCode: 91,
         contactNo: data.phoneNumber,
       });
+      setPhoneNumber(data.phoneNumber);
       setScreen("otp");
     } catch (error) {
       console.error(error);
@@ -84,7 +76,7 @@ const Login = () => {
   };
 
   const verifyOTP = async () => {
-    try {     
+    try {
       const response = await api.post(
         LOGIN_URL,
         {
@@ -95,39 +87,39 @@ const Login = () => {
         }
       );
       const { token, refreshToken, isOrganizationUser, stores = [] } = response.data;
-      dispatch(setTokens({ token, refreshToken, isOrganizationUser, stores }));  
+      dispatch(setTokens({ token, refreshToken, isOrganizationUser, stores }));
       authNavigation(stores, token);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const organizationUserToken = async () => {    
-    
+  const organizationUserToken = async (storeParam) => {
+    const storeToUse = storeParam || selectedStore;
     const initialAccessToken = localStorage.getItem("initialAccessToken");
-    
+
     try {
-      const response = await api.post('/v1/store-user/auth/generateToken/',{
-        store: selectedStore?._id
-      },
-      {
-        headers: {
-          Authorization:`Bearer ${initialAccessToken}`
-        }
-      })   
-      dispatch(setOrganizationTokens({accessToken: response.data.token, refreshToken: response.data.refreshToken}));
-      dispatch(setStore(selectedStore));   
-      navigate('dashboard');
+      const response = await api.post('/v1/store-user/auth/generateToken/',
+        { store: storeToUse?._id },
+        {
+          headers: {
+            Authorization: `Bearer ${initialAccessToken}`
+          }
+        });
+
+      dispatch(setOrganizationTokens({ accessToken: response.data.token, refreshToken: response.data.refreshToken }));
+      dispatch(setStore(storeToUse));
+      navigate("dashboard");
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   const handleResend = () => {
-    generateOTP();
+    generateOTP({ phoneNumber });
     setSecondsLeft(55);
   };
-  
+
   const renderContent = () => {
     switch (screen) {
       case "phone":
@@ -142,7 +134,13 @@ const Login = () => {
                 <input
                   className="phone-input"
                   placeholder="Enter shop ID / Mobile Number"
-                  {...register("phoneNumber", {required: "Phone number is required" ,pattern: {value: /^\+?\d{10,15}$/, message: "Enter a valid phone number"}})}
+                  {...register("phoneNumber", {
+                    required: "Phone number is required",
+                    pattern: {
+                      value: /^\+?\d{10,15}$/,
+                      message: "Enter a valid phone number"
+                    }
+                  })}
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
                 />
@@ -155,11 +153,11 @@ const Login = () => {
               />
             </form>
             <p className="btn-excerpt excerpt">
-              By clicking, you agree to our <a href="#">Terms & Conditions</a>{" "}
-              and <a href="#">Privacy Policy.</a>
+              By clicking, you agree to our <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy.</a>
             </p>
           </LoginCard>
         );
+
       case "otp":
         return (
           <LoginCard
@@ -174,8 +172,7 @@ const Login = () => {
               onClick={() => otp.length === 4 && verifyOTP()}
             />
             <p className="btn-excerpt excerpt">
-              Didn’t receive OTP?{" "}
-              {secondsLeft === 0 ? (
+              Didn’t receive OTP? {secondsLeft === 0 ? (
                 <span
                   onClick={handleResend}
                   className="text-secondary font-semibold cursor-pointer"
@@ -194,11 +191,9 @@ const Login = () => {
           <LoginCard
             logo={store_logo}
             title={"No stores are linked to this account"}
-            excerpt={
-              "Enter your account details correctly or register your store with us"
-            }
+            excerpt={"Enter your account details correctly or register your store with us"}
           >
-            <Button btnText={"Register your store with us"} btnStyle="fill" onClick={() => navigate('register-store')}/>
+            <Button btnText={"Register your store with us"} btnStyle="fill" onClick={() => navigate('register-store')} />
             <Button
               btnText={"Login with different account"}
               btnStyle="outline"
@@ -214,9 +209,20 @@ const Login = () => {
             title={"Select Your Store"}
             excerpt={"Your Number is connect with 2 stores"}
           >
-            {stores?.map(data => <StoreCard key={data?._id} storeData={data} selected={selectedStore?._id === data?._id} setSelectedStore={setSelectedStore}/>)}
+            {stores?.map(data => (
+              <StoreCard
+                key={data?._id}
+                storeData={data}
+                selected={selectedStore?._id === data?._id}
+                setSelectedStore={setSelectedStoreLocal}
+              />
+            ))}
 
-            <Button btnText={"Continue"} btnStyle={`${selectedStore ? 'fill' : 'disabled'}`} onClick={() => selectedStore && organizationUserToken()}/>
+            <Button
+              btnText={"Continue"}
+              btnStyle={`${selectedStore ? 'fill' : 'disabled'}`}
+              onClick={() => selectedStore && organizationUserToken()}
+            />
           </LoginCard>
         );
 
@@ -232,15 +238,18 @@ const Login = () => {
               btnStyle="fill"
               onClick={() => setScreen("phone")}
             />
-            <Button btnText={"Contact Us"} btnStyle="outline" onClick={() => navigate('/contact-us')}/>
+            <Button
+              btnText={"Contact Us"}
+              btnStyle="outline"
+              onClick={() => navigate('/contact-us')}
+            />
             <p className="btn-excerpt excerpt">
-              By clicking, you agree to our <a href="#">Terms & Conditions</a>{" "}
-              and <a href="#">Privacy Policy.</a>
+              By clicking, you agree to our <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy.</a>
             </p>
           </LoginCard>
         );
     }
-  };  
+  };
 
   return (
     <div className="on-boarding">

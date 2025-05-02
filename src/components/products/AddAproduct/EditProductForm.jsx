@@ -58,7 +58,6 @@ const EditProductForm = () => {
   } = selectedProduct;
   function onSubmit(data) {
     dispatch(updatePricing(data));
-    console.log(data);
     dispatch(selectProduct(null));
     navigate("/products");
   }
@@ -386,8 +385,8 @@ const EditProductForm = () => {
                 (You can select multiple option)
               </p>
               <div className="delivery-type-inputs">
-                {deliveryType.map((option) => (
-                  <div key={option.id} className="delivery-type-input">
+                {deliveryType.map((option, index) => (
+                  <div key={index} className="delivery-type-input">
                     {/* <Controller
                       {...register("deliveryType")}
                       control={control}
@@ -443,7 +442,9 @@ const EditProductForm = () => {
             </div>
           </div>
         </div>
-        <Button btnText={"Update Changes"} />
+        <div className="savebtn-container">
+          <Button btnText={"Update Changes"} />
+        </div>
       </form>
     </ProductPageTemplate>
   );

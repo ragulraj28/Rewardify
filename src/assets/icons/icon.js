@@ -11,6 +11,8 @@ import DownArrowIcon from "./down-arrow-icon.svg?react";
 import UpArrowIcon from "./uparrow.svg?react";
 import DeleteIcon from "./delete.svg?react";
 import SeaarchIcon from "./search.svg?react";
+import PhoneBlackIcon from './phone-black.svg?react';
+import LocationIcon from './location.svg?react';
 
 export {
   ChevronIcon,
@@ -25,5 +27,7 @@ export {
   DownArrowIcon,
   DeleteIcon,
   UpArrowIcon,
-  SeaarchIcon
+  SeaarchIcon,
+  PhoneBlackIcon,
+  LocationIcon,
 };

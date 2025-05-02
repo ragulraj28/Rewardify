@@ -132,7 +132,7 @@ const ProductDetailsForm = () => {
             className="product-details-product-mrp "
             placeholder="Product MRP"
           />
-          <p className="text-red">{errors.productMRP?.message}</p>
+          <p className="form-error">{errors.productMRP?.message}</p>
         </div>{" "}
         <div className="product-details-form-col relative">
           <div className="inner-section-two-col">

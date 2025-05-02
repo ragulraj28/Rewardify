@@ -1,18 +1,16 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Navigate, useLocation } from 'react-router';
+import { Navigate, useLocation } from 'react-router'
 
-const ProtectedRoute = ({children}) => {
+const ProtectedRoute = ({ children }) => {
+  const accessToken = useSelector((state) => state.auth?.accessToken)
+  const location = useLocation()
 
-    const accessToken = useSelector(state => state.auth.accessToken);
-    const location = useLocation();
+  if (!accessToken) {
+    return <Navigate to="/" state={{ from: location }} replace />
+  }
 
-    if(!accessToken) {
-        return <Navigate to={'/'} state={{ from: location}} replace />
-    }
- 
-    return children;
-
+  return children
 }
 
 export default ProtectedRoute

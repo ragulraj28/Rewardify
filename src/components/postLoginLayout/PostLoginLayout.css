@@ -12,7 +12,7 @@
 
     .outlet-container {
 
-        @apply p-11 py-11 xl:pr-25 flex-1 w-full;
+        @apply p-7 sm:p-11 sm:py-11 xl:pr-25 flex-1 w-full;
 
 
     }

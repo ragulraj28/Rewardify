@@ -1,57 +1,50 @@
-// src/features/orders/PreparingPage.jsx
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
-import OrderCard from './OrderCard';
-import { pack } from '../../utils/slices/ordersSlice';
-import './Orders.css';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { moveToPacked, rejectPreparingOrder } from "../../utils/slices/ordersSlice";
+import "./Orders.css";
+import OrderCard from "./OrderCard";
 
-export function PreparingPage() {
+const PreparingPage = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const customer = useSelector(s => s.customer);
-  const orders   = useSelector(s => s.orders.preparing);
+  const preparingOrders = useSelector((state) => state.orders.preparing);
 
-  function Empty({ message }) {
-    return (
-      <div className="orders-empty">
-        <img
-          src="/assets/icons/empty-orders.svg"
-          alt="No Orders"
-          className="empty-illustration"
-        />
-        <h3>{message}</h3>
-        <p>Your store hasn’t received any orders. Your first sale is just around the corner!</p>
-      </div>
-    );
-  }
+  function getFormattedDateTime() {
+      const now = new Date();
+    
+      const options = {
+        month: 'short',
+        day: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+      };
+    
+      const formatted = now.toLocaleString('en-US', options);
+      return formatted.replace(',', '').replace(',', ' |');
+    }
 
-  if (!orders.length) {
-    return <Empty message="No Orders in Preparing Yet!!" />;
-  }
+  const handlePack = (id) => {
+    dispatch(moveToPacked(id));
+  };
+
+  const handleReject = (id) => {
+    dispatch(rejectPreparingOrder(id));
+  };
+
+  const buttonConfig = [{
+    btnText : "Verify & Pack Items",
+    btnStyle : "fill",
+    onClick : handlePack
+  }]
 
   return (
-    <div className="orders-grid">
-      {orders.map(o => (
-        <OrderCard
-          key={o.id}
-          order={{
-            ...o,
-            customer,
-            deliveryAddress: customer.address,
-            timeline: [
-              { label: 'Order Placed',    date: o.date, time: o.time },
-              { label: 'Order Confirmed', date: o.date, time: o.time }
-            ]
-          }}
-          primaryText="Order Ready"
-          showSecondary={false}
-          onPrimaryClick={id => {
-            dispatch(pack(id));
-            navigate('packed');
-          }}
-        />
+    <div className="orders-container">
+      {preparingOrders.map((order) => (
+        <OrderCard key={order.id} order={order} btnConfig={buttonConfig}/>
       ))}
     </div>
   );
-}
+};
+
+export default PreparingPage;

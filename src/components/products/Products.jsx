@@ -81,7 +81,6 @@ const Products = () => {
     switch (action) {
       case "Edit Price":
         dispatch(selectProduct(passedproduct));
-        console.log("passedproduct", passedproduct);
         navigate("/edit-product");
         break;
       case "Add Stock":

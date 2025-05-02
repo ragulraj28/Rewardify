@@ -1,3 +1,5 @@
+@import '../../index.css';
+
 /* Global wrapper */
 .orders-wrapper {
   padding: 24px 32px;
@@ -63,16 +65,135 @@
   gap: 24px;
 }
 
+.orders-container {
+
+  @apply flex flex-wrap gap-10;
+
+}
+
 /* Card container */
 .order-card {
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  min-height: 280px;
-  position: relative;
+
+  @apply rounded-lg py-5 px-3 xl:max-w-[460px] w-full border border-border-color text-sm;
+
+  .order-header {
+
+    @apply flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-5 mb-5;
+
+    .order-id {
+
+      @apply primary-text;
+
+    }
+
+  }
+
+  .label {
+
+    @apply inline-block font-medium mb-3 text-base;
+
+  }
+
+  .customer-details {
+
+    .address-wrapper {
+
+      @apply flex flex-wrap items-center gap-3 mt-2;
+
+      .phone, .address {
+
+        @apply flex items-center gap-1.5;
+
+        .icon {
+
+          @apply p-1.5 rounded-full bg-[#F2F8DF];
+  
+        }
+
+      }
+
+      .phone {
+
+        @apply pr-3 border-r border-border-color;
+
+      }
+
+    }
+
+  }
+
+  .order-items {
+
+    @apply bg-transparent p-0 mt-5;
+
+    .item {
+
+      @apply m-0 mb-4 last:mb-0 flex items-center justify-between gap-5;
+
+      .price {
+
+        @apply font-medium;
+
+      }
+
+    }
+
+  }
+
+  .order-total {
+
+    @apply font-medium flex justify-between items-center gap-5;
+
+    .paid-by {
+      
+      @apply py-0.5 px-1 rounded uppercase bg-[#F2F8DF] ml-1;
+
+    }
+
+  }
+
+  hr {
+
+    @apply mt-5 mb-4 border-border-color;
+
+  }
+
+  .order-buttons {
+
+    @apply mt-7 flex flex-col sm:flex-row items-center gap-4 sm:gap-6;
+
+  }
+
+  .order-track {
+
+    @apply mt-6 flex flex-col gap-7;
+
+    .track {
+
+      @apply flex sm:flex-row flex-col gap-3 sm:justify-between sm:items-center sm:gap-5;
+
+      p {
+
+        @apply flex items-center gap-2.5;
+
+        .active {
+
+          @apply block h-4 w-4 rounded-full bg-[#45C676] flex-shrink-0;
+  
+        }
+
+      }
+
+      .time {
+
+        @apply pl-6.5 sm:pl-0;
+
+      }
+
+    }
+
+  }
+ 
 }
 
 /* Completed card accent */
@@ -230,4 +351,3 @@ button {
   margin-bottom: 24px;
   padding-left: 0;      /* ensure no default list padding */
 }
-

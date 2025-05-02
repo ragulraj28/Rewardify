@@ -1,56 +1,52 @@
-// src/features/orders/CompletedPage.jsx
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import OrderCard from './OrderCard';
-import { reject } from '../../utils/slices/ordersSlice';
-import './Orders.css';
+import React from "react";
+import { useSelector } from "react-redux";
+import "./Orders.css";
+import { LocationIcon, PhoneBlackIcon } from "../../assets/icons/icon";
 
-export function CompletedPage() {
-  const dispatch = useDispatch();
-  const customer = useSelector(s => s.customer);
-  const orders   = useSelector(s => s.orders.completed);
-
-  // Inline Empty helper
-  function Empty({ message }) {
+const CompletedOrderCard = ({order}) => {
     return (
-      <div className="orders-empty">
-        <img
-          src="/assets/icons/empty-orders.svg"
-          alt="No Orders"
-          className="empty-illustration"
-        />
-        <h3>{message}</h3>
-        <p>Your store hasn’t received any orders. Your first sale is just around the corner!</p>
+      <div className="packed-order-card order-card">
+        <span className="label">Ready for delivery:</span>
+        <div className="order-header"><p className="order-id">Order Id: {order.id}</p></div>
+        <div className="order-details">
+          <div className="customer-details">
+            <p className="customer-name">{order.customerName}</p>
+            <div className="address-wrapper">
+              <p className="phone"><span className="icon"><PhoneBlackIcon /></span> {order.phone}</p>
+              <p className="address"><span className="icon"><LocationIcon /></span> {order.address}</p>
+            </div>
+          </div>
+          <div className="order-track">
+            <div className="track delivery-pickup">
+              <p><span className="active"></span>Delivery Pickup</p>
+              <p className="time">-</p>
+            </div>
+            <div className="track delivered">
+              <p><span className="active"></span>Delivered</p>
+              <p className="time">{order.date}</p>
+            </div>
+          </div>
+          <hr /> 
+            <p className="order-total"><span>Total Bill Amount <span className="paid-by">PAID - UPI</span></span> <span className="total-price">₹{order.total}</span></p>
+        </div>
       </div>
-    );
+    )
   }
 
-  if (!orders.length) {
-    return <Empty message="No Orders Received Yet!!" />;
-  }
+const CompletedPage = () => {
+  const completedOrders = useSelector((state) => state.orders.completed);
 
   return (
-    <div className="orders-grid">
-      {orders.map(o => (
-        <OrderCard
-          key={o.id}
-          order={{
-            ...o,
-            customer,
-            deliveryAddress: customer.address,
-            timeline: [
-              { label: 'Delivery pickup', date: o.date, time: o.time },
-              { label: 'Delivered',       date: o.date, time: o.time }
-            ]
-          }}
-          primaryText="Approve Order"
-          secondaryText="Reject Order"
-          showSecondary
-          isCompleted
-          onPrimaryClick={id => {/* your approve logic */}}
-          onSecondaryClick={id => dispatch(reject(id))}
-        />
-      ))}
+    <div className="orders-container">
+      {completedOrders.length > 0 ? (
+        completedOrders.map((order) => (
+          <CompletedOrderCard key={order.id} order={order}/>
+        ))
+      ) : (
+        <p className="no-orders">No orders in Completed stage.</p>
+      )}
     </div>
   );
-}
+};
+
+export default CompletedPage;
