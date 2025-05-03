@@ -1,9 +1,7 @@
 import axios from "axios";
-import platform from "platform";
 import { BASE_URL, REFRESH_TOKEN_URL } from "./apiURL";
 import store from "../store/store";
 import { logout, setOrganizationTokens } from "../slices/authSlice";
-import { Navigate } from "react-router";
 
 const api = axios.create({
     baseURL: BASE_URL,
@@ -12,13 +10,13 @@ const api = axios.create({
 // Device Info Helper
 const getDeviceInfo = () => ({
     app: 'web',
-    os: platform.os?.family || 'unknown',
-    os_version: platform.os?.version || 'unknown',
-    device: platform.product || 'unknown',
-    device_type: /Mobile|Android|iPhone|iPad/i.test(navigator.userAgent) ? 'mobile' : 'desktop',
+    os: "Android",
+    os_version: "6.0",
+    device: "Nexus 5",
+    device_type: "mobile",
     ip_address: null,
-    browser_name: platform.name || 'unknown',
-    browser_version: platform.version || 'unknown',
+    browser_name: "Chrome Mobile",
+    browser_version: "136.0.0.0",
 });
 
 // Request Interceptor
