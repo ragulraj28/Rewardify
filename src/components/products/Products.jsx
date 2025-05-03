@@ -28,7 +28,7 @@ const Products = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const stockProducts = useSelector((state) => state.products.stockProducts);
-  const { accessToken } = useSelector( state => state.auth );
+  const { accessToken } = useSelector((state) => state.auth);
   const [isOpen, setIsOpen] = useState("");
   const { showPopup, hidePopup } = usePopup();
   const [selectedAction, setSelectedAction] = useState("");
@@ -46,14 +46,12 @@ const Products = () => {
   }, {});
 
   const fetchProducts = async () => {
-
     try {
       const response = await api.post(`/v1/store-user/master/products/list`);
       dispatch(setProducts(response?.data?.data));
     } catch (err) {
       console.error("Error fetching data:", err);
     }
-
   };
   function handleAddProduct() {
     navigate("/add-product");
@@ -162,7 +160,7 @@ const Products = () => {
                   isOpen === category ? "block overflow-x-auto" : "hidden"
                 }`}
               >
-                <div className="product-listing-tablecontainer min-w-[856px]">
+                <div className="product-listing-tablecontainer min-w-[856px] hidden md:block">
                   <div className="product-listing-table ">
                     <div className="table-productname-headerleft text-tertiary">
                       <h3 className="text-tertiary">Product Name</h3>
@@ -184,25 +182,141 @@ const Products = () => {
                   </div>
                 </div>
                 {groupedProducts[category].map((product) => (
-                  <div key={product.productName} className="py-4 rounded-md min-w-[856px]">
-                    <div className="product-listing-table">
-                      <div className="table-productname-headerleft ">
-                        <h3 className="truncate  w-[100px] lg:w-[210px]">
-                          {product.productName}
-                        </h3>
-                      </div>
-                      <div className="table-productname-headerright">
-                        <div className="producttable-rightheading">
-                          <h3>₹{product.productPrice}</h3>
+                  <div>
+                    <div
+                      key={product.productName}
+                      className="py-4 rounded-md min-w-[856px] hidden md:block"
+                    >
+                      <div className="product-listing-table">
+                        <div className="table-productname-headerleft ">
+                          <h3 className="truncate  w-[100px] lg:w-[210px]">
+                            {product.productName}
+                          </h3>
                         </div>
-                        <div className="producttable-rightheading">
-                          <h3>{product.abailableQuantity}</h3>
+                        <div className="table-productname-headerright">
+                          <div className="producttable-rightheading">
+                            <h3>₹{product.productPrice}</h3>
+                          </div>
+                          <div className="producttable-rightheading">
+                            <h3>{product.abailableQuantity}</h3>
 
-                          <p className="text-[12px] text-tertiary">
+                            <p className="text-[12px] text-tertiary">
+                              {product.unitOfMeasurement}
+                            </p>
+                          </div>
+                          <div className="producttable-rightheading">
+                            <button
+                              onClick={() => toggleHandler(product)}
+                              className={`relative inline-block w-12 h-6 rounded-full ${
+                                product.availability
+                                  ? "bg-linear-to-r from-[#668D12] to-[#ACC43F] "
+                                  : "bg-gray-300"
+                              }`}
+                            >
+                              <span
+                                className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-all duration-300 transform ${
+                                  product.availability
+                                    ? "translate-x-6"
+                                    : "translate-x-0"
+                                }`}
+                              ></span>
+                            </button>
+                          </div>
+                          <div className="producttable-rightheading">
+                            <select
+                              value={selectedAction}
+                              onChange={(e) => {
+                                setSelectedAction(e.targetValue);
+                                handleActionChange(e.target.value, product);
+                              }}
+                              className="border-border-color border-[1px] rounded-[8px] p-[10px]"
+                            >
+                              <option
+                                value=""
+                                disabled
+                                selected
+                                className="text-tertiary "
+                              >
+                                Action
+                              </option>
+                              <option
+                                className="p-[2px] border bg-[#fff] hover:text-[#fff] hover:bg-[#668D12]"
+                                value="Edit Price"
+                              >
+                                Edit Price
+                              </option>
+                              <option
+                                className="p-[2px] border bg-[#fff] hover:text-[#fff] hover:bg-[#668D12]"
+                                value="Add Stock"
+                              >
+                                Add Stock
+                              </option>
+                              <option
+                                className="p-[2px] border bg-[#fff] hover:text-[#fff] hover:bg-[#668D12]"
+                                value="Minus Stock"
+                              >
+                                Minus Stock
+                              </option>
+                              <option
+                                className="p-[2px] border bg-[#fff] hover:text-[#fff] hover:bg-[#668D12]"
+                                value="Delete product"
+                              >
+                                Delete product
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="product-listing-tablecontainer  w-full md:hidden flex px-[5px] py-[8px] inset-shadow-sm shadow-indigo-500 shadow-green-50">
+                      <div className="product-listing-table flex-wrap gap-[5px] items-middle ">
+                        <div className=" text-tertiary basis-full flex gap-[8px] mt-[3px]">
+                          <h3 className="text-tertiary ">Product Name</h3>
+                        </div>
+
+                        <div className=" text-tertiary basis-full flex gap-[8px] mt-[3px]">
+                          <h3 className="text-tertiary">Price</h3>
+                        </div>
+
+                        <div className=" text-tertiary basis-full flex gap-[8px]">
+                          <h3 className="text-tertiary">Availablity</h3>
+                        </div>
+                        <div className=" text-tertiary basis-full flex gap-[5px] mt-[3px]">
+                          <h3 className="text-tertiary">Action</h3>
+                        </div>
+
+                        <div className=" text-tertiary basis-full flex gap-[8px] mt-[3px]">
+                          <h3 className="text-tertiary">Availablity</h3>
+                        </div>
+                        <div className=" text-tertiary basis-full flex gap-[8px] mt-[3px] items-center">
+                          <h3 className="text-tertiary">Action</h3>
+                        </div>
+                      </div>
+
+                      <div className="product-listing-table flex-wrap gap-[5px] items-middle ">
+                        <div className=" text-tertiary basis-full flex gap-[8px] mt-[3px]">
+                          <p className="text-black w-[150px] truncate">
+                            {product.productName}
+                          </p>
+                        </div>
+
+                        <div className=" text-tertiary basis-full flex gap-[8px] mt-[3px]">
+                          <p className="text-black">₹{product.productPrice}</p>
+                        </div>
+
+                        <div className=" text-tertiary basis-full flex gap-[8px]">
+                          <p className="text-black">
+                            {product.abailableQuantity}
+                          </p>
+                        </div>
+                        <div className=" text-tertiary basis-full flex gap-[5px] mt-[3px]">
+                          <p className="text-black">
+                            {" "}
                             {product.unitOfMeasurement}
                           </p>
                         </div>
-                        <div className="producttable-rightheading">
+
+                        <div className=" text-tertiary basis-full flex gap-[8px] mt-[3px]">
                           <button
                             onClick={() => toggleHandler(product)}
                             className={`relative inline-block w-12 h-6 rounded-full ${
@@ -220,14 +334,14 @@ const Products = () => {
                             ></span>
                           </button>
                         </div>
-                        <div className="producttable-rightheading">
+                        <div className=" text-tertiary basis-full flex gap-[8px] mt-[3px] items-center">
                           <select
                             value={selectedAction}
                             onChange={(e) => {
                               setSelectedAction(e.targetValue);
                               handleActionChange(e.target.value, product);
                             }}
-                            className="border-border-color border-[1px] rounded-[8px] p-[10px]"
+                            className="border-border-color border-[1px] rounded-[8px]  p-[2px] w-[120px] "
                           >
                             <option
                               value=""
@@ -238,25 +352,25 @@ const Products = () => {
                               Action
                             </option>
                             <option
-                              className="p-[2px] border bg-[#fff] hover:text-[#fff] hover:bg-[#668D12]"
+                              className=" md:p-[2px] border bg-[#fff] hover:text-[#fff] hover:bg-[#668D12]"
                               value="Edit Price"
                             >
                               Edit Price
                             </option>
                             <option
-                              className="p-[2px] border bg-[#fff] hover:text-[#fff] hover:bg-[#668D12]"
+                              className=" md:p-[2px] border bg-[#fff] hover:text-[#fff] hover:bg-[#668D12]"
                               value="Add Stock"
                             >
                               Add Stock
                             </option>
                             <option
-                              className="p-[2px] border bg-[#fff] hover:text-[#fff] hover:bg-[#668D12]"
+                              className=" md:p-[2px] border bg-[#fff] hover:text-[#fff] hover:bg-[#668D12]"
                               value="Minus Stock"
                             >
                               Minus Stock
                             </option>
                             <option
-                              className="p-[2px] border bg-[#fff] hover:text-[#fff] hover:bg-[#668D12]"
+                              className=" md:p-[2px] border bg-[#fff] hover:text-[#fff] hover:bg-[#668D12]"
                               value="Delete product"
                             >
                               Delete product
