@@ -1,5 +1,4 @@
 import React from "react";
-import "./Orders.css";
 import { LocationIcon, PhoneBlackIcon } from "../../assets/icons/icon";
 import Button from "../common/button/Button";
 

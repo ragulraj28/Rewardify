@@ -1,5 +1,4 @@
 // import React, { useEffect } from "react";
-import "./Products.css";
 import ProductPageTemplate from "./ProductPageTemplate";
 import ProductPageHeader from "./ProductPageHeader";
 import ProductPageHeaderLeft from "./ProductPageHeaderLeft";

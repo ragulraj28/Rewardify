@@ -1,4 +1,3 @@
-import './RegisterStore.css'
 import StoreInformation from './StoreInformation'
 import Header from '../contact/header/Header'
 import StoreDocument from './StoreDocument'

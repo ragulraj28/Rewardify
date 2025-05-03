@@ -1,5 +1,5 @@
 import React from "react";
-import "./ProductInformation.css";
+
 import ProductDetailsHeading from "./ProductDetailsHeading";
 import ProductDetailsForm from "./ProductDetailsForm";
 import ProductInformationForm from "./ProductInformationForm";

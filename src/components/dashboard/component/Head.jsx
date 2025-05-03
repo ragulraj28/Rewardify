@@ -1,5 +1,4 @@
 import React from "react";
-import "../style/head.css";
 import rewardify from "../../../assets/rewardify.png";
 import goldCoin from "../../../assets/gold coin.png";
 import { FaRegBell } from "react-icons/fa";

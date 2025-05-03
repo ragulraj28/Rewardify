@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import "./ProductInformationForm.css";
 import { useFormContext, Controller } from "react-hook-form";
 import { useSelector } from "react-redux";
 

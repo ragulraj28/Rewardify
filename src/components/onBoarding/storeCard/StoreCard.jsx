@@ -1,5 +1,3 @@
-import './StoreCard.css'
-
 const StoreCard = ({selected, storeData, setSelectedStore}) => {
 
   const{_id, name, images, address } = storeData;  

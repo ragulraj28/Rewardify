@@ -1,6 +1,5 @@
 import React from "react";
 import DeliveryDetailsBox from "./DeliveryDetailsBox";
-import "./DeliveryDetailsProductImage.css";
 import ProductImagebox from "./ProductImagebox";
 const DeliveryDetailsProductImage = () => {
   return (

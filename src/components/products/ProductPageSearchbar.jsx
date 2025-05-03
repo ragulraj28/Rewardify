@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./ProductPageSearchbar.css";
 import { SeaarchIcon } from "../../assets/icons/icon";
 
 const ProductPageSearchbar = () => {

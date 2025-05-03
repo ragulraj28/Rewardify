@@ -1,10 +1,11 @@
-import "./App.css";
 import Login from "./components/onBoarding/login/Login";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router";
 import Contact from "./components/onBoarding/contact/Contact";
 import Dashboard from "./components/dashboard/component/Dashboard";
 import Profile from "./components/profile/Profile";
 import Products from "./components/products/Products";
+import { Provider } from "react-redux";
+import store from "./utils/store/store";
 import ProtectedRoute from "./utils/protectedRoute/ProtectedRoute";
 import RegisterStore from "./components/onBoarding/registerStore/RegisterStore";
 import PostLoginLayout from "./components/postLoginLayout/PostLoginLayout";
@@ -20,6 +21,7 @@ import OrdersContainer from './components/orders/OrdersContainer';
 const App = () => {
 
   return (
+    <Provider store={store}>
       <BrowserRouter>
         <Routes>
           <Route index element={<Login />} />
@@ -63,6 +65,7 @@ const App = () => {
           <Route path="*" element={<h1>404 Page Not Found</h1>} />
         </Routes>
       </BrowserRouter>
+    </Provider>
   );
 };
 

@@ -1,5 +1,3 @@
-@import "../../index.css";
-
 .product-page-template {
     @apply bg-white rounded-[12px] pt-[20px] md:pt-[46px] px-[15px] md:px-[40px] pb-4
 }

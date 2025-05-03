@@ -1,6 +1,5 @@
 import React from 'react';
 import { useEffect } from 'react';
-import '../style/settlements.css'
 import api from '../../../utils/axios/axios';
 import logoGreen from '../../../assets/icons/logogreen.png'
 const Settlements = () => {

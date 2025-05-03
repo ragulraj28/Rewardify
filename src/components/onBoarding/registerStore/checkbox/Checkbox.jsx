@@ -1,4 +1,4 @@
-import './Checkbox.css'
+
 
 const Checkbox = ({id, labelText, ...register}) => {
   return (

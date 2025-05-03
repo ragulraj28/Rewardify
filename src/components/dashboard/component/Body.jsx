@@ -1,6 +1,5 @@
 import React from 'react'
 import Actions from './Actions';
-import '../style/dashboard.css'
 import Transaction from './Transaction';
 import OrdersContainer from '../../orders/OrdersContainer'
 import whatsapp from '../../../assets/whatsapp.png'

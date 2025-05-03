@@ -1,7 +1,5 @@
 import React, { Children } from "react";
-import "./ProductPageTemplate.css";
 
-import "./NoProducts.css";
 import ProductPageHeader from "./ProductPageHeader";
 import ProductPageHeaderLeft from "./ProductPageHeaderLeft";
 import ProductPageHeading from "./ProductPageHeading";

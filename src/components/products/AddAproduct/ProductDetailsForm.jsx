@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./ProductDetailsForm.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useFormContext } from "react-hook-form";
 import { selectProduct } from "../../../utils/slices/productSlice";

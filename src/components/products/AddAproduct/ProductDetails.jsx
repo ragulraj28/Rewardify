@@ -1,5 +1,4 @@
 import React from "react";
-import "./ProductDetails.css";
 import ProductDetailsHeading from "./ProductDetailsHeading";
 import ProductDetailsForm from "./ProductDetailsForm";
 

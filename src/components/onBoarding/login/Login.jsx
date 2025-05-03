@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./Login.css";
+
 import bgImage from "../../../assets/login-background.svg";
 import LoginCard from "./LoginCard";
 import logo from "../../../assets/rewardify-logo.svg";

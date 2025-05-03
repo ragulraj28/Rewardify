@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { moveToCompleted, rejectPackedOrder } from "../../utils/slices/ordersSlice";
-import "./Orders.css";
 import { LocationIcon, PhoneBlackIcon } from "../../assets/icons/icon";
 
 const PackedOrderCard = ({order}) => {

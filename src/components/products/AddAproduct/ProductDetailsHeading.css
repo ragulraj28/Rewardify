@@ -1,5 +1,3 @@
-@import "../../../index.css";
-
 .product-details-heading h2 {
 
     @apply text-xl text-[#030401] font-[500] mb-[30px]

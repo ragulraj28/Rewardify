@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import "./ProductImagebox.css";
 import ProductDetailsHeading from "./ProductDetailsHeading";
 import noproductImage from "../../../assets/images/products/default-product.png";
 import { useFormContext } from "react-hook-form";

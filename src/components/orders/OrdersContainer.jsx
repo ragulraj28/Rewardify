@@ -1,6 +1,5 @@
 // src/features/orders/OrdersContainer.jsx
 import { Outlet, NavLink } from 'react-router';
-import './Orders.css';
 
 export default function OrdersContainer() {
 

@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import "./Orders.css";
 import { LocationIcon, PhoneBlackIcon } from "../../assets/icons/icon";
 
 const CompletedOrderCard = ({order}) => {

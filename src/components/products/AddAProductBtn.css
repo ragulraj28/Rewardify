@@ -1,5 +1,3 @@
-@import "../../index.css";
-
 .addaproduct-btn {
     @apply w-[100%] md:w-[339px] max-w-[339px] text-center mt-[10px] md:mt-[16px];
 }

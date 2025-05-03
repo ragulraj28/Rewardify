@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { moveToPacked, rejectPreparingOrder } from "../../utils/slices/ordersSlice";
-import "./Orders.css";
 import OrderCard from "./OrderCard";
 
 const PreparingPage = () => {

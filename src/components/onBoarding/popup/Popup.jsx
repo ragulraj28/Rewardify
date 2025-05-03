@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import './Popup.css'
+
 
 const Popup = ({logo, children}) => {
 

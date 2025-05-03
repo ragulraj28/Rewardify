@@ -1,12 +1,14 @@
-import React from "react";
-import "./AddAProduct.css";
+import React, { useState } from "react";
 import ProductPageTemplate from "../ProductPageTemplate";
 import ProductPageHeader from "../ProductPageHeader";
 import ProductPageHeaderLeft from "../ProductPageHeaderLeft";
 import ProductPageHeading from "../ProductPageHeading";
 import ProductPageSearchbar from "../ProductPageSearchbar";
+import AddAProductBtn from "../AddAProductBtn";
+import NoProductAdded from "../NoProductAdded";
 import ProductDetails from "./ProductDetails";
 import ProductInformation from "./ProductInformation";
+import Products from "../Products";
 import DeliveryDetailsProductImage from "./DeliveryDetailsProductImage";
 import { FormProvider, useForm } from "react-hook-form";
 import Button from "../../common/button/Button";
@@ -26,6 +28,8 @@ const AddAProduct = ({}) => {
 
   const onSubmit = (data) => {
     const values = getValues();
+    console.log("Submitted:", data);
+    console.log(stockProducts);
     const productExists = stockProducts.some(
       (product) => product.productName === data.productName
     );
@@ -37,7 +41,19 @@ const AddAProduct = ({}) => {
       dispatch(selectProduct(null));
       navigate("/products");
     }
+    // dispatch(addToStockProducts(data));
+    console.log("product Description: ", values.productDescription);
+    // dispatch(selectProduct(null));
+    // navigate("/products");
   };
+
+  // const { allProducts } = useSelector((state) => state.products);
+  // const [products, setProducts] = useState(allProducts);
+
+  // setProducts(allProducts);
+  // function handleProductSubmit(data) {
+  //   console.log("productsubmited" + data);
+  // }
 
   return (
     <div className="add-a-product">
@@ -66,4 +82,4 @@ const AddAProduct = ({}) => {
   );
 };
 
-export default AddAProduct
+export default AddAProduct;

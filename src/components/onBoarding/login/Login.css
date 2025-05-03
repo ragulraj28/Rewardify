@@ -1,5 +1,3 @@
-@import '../../../index.css';
-
 .page-title {
 
     @apply text-[32px] font-bold mb-2 text-secondary;

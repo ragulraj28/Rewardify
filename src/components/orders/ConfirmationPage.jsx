@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { moveToPreparing, rejectConfirmationOrder } from "../../utils/slices/ordersSlice";
-import "./Orders.css";
 import { LocationIcon, PhoneBlackIcon } from "../../assets/icons/icon";
 import Button from "../common/button/Button";
 import OrderCard from "./OrderCard";

@@ -1,5 +1,4 @@
 import React from "react";
-import "./ProductPageHeading.css";
 
 const ProductPageHeading = ({ children }) => {
   return (

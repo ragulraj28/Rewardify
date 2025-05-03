@@ -1,6 +1,6 @@
 import React from "react";
 import ProductDetailsHeading from "./ProductDetailsHeading";
-import "./DeliveryDetailsBox.css";
+
 import { useFormContext, useWatch } from "react-hook-form";
 
 const deliveryType = [

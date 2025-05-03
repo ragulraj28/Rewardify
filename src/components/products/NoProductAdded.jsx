@@ -1,5 +1,4 @@
 import React from "react";
-import "./NoProductAdded.css";
 import noproductsimg from "../../assets/images/products/no-products.png";
 import AddAProductBtn from "./AddAProductBtn";
 import Button from "../common/button/Button";

@@ -1,9 +1,3 @@
-@import "../../index.css";
-
-
-
-
-
 .product-page-searchbar {
     @apply border-[#ECECEC] border-[2px] flex align-middle rounded-[6px] max-w-[359px] w-full h-fit
 }

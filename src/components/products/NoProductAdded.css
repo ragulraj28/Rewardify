@@ -1,6 +1,3 @@
-@import "../../index.css";
-
-
 .noproducts-added {
     @apply flex items-center justify-center h-[70vh]
 }

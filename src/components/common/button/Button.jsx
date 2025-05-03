@@ -1,5 +1,4 @@
 import React from "react";
-import "./Button.css";
 
 const Button = ({btnText, btnType = 'button', icon, iconPosition='left', btnStyle='fill', onClick}) => {
   return (

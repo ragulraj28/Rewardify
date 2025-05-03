@@ -1,5 +1,4 @@
 import React from 'react'
-import '../style/Transaction.css'
 import { MdOutlinePersonOutline } from "react-icons/md";
 
 const AllTransaction = ({ph_no,paid_time,paid_date,time,payment_method}) => {

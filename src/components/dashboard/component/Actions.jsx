@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../style/actions.css';
 import { MdOutlinePayments, MdHistory, MdAddCard, MdOutlineNoteAlt } from "react-icons/md";
 import { HiMiniUserGroup } from "react-icons/hi2";
 import { CgNotes } from "react-icons/cg";

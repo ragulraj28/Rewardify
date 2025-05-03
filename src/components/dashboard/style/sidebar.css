@@ -1,5 +1,3 @@
-@import '../../../index.css';
-
 .SideBar{
     
     @apply hidden 2xl:block z-20 max-w-[271px] w-full h-full bg-white;

@@ -1,5 +1,4 @@
 import Header from './header/Header';
-import './Contact.css';
 import bannerImage from '../../../assets/hero-banner.svg';
 import Button from '../../common/button/Button';
 import Popup from '../popup/Popup';

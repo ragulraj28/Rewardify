@@ -1,5 +1,4 @@
 import React from 'react'
-import '../style/sidebar.css'
 import { useDispatch, useSelector } from 'react-redux';
 import shop from '../../../assets/shop.png'
 import { MdOutlineDashboard } from "react-icons/md";

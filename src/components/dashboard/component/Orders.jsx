@@ -1,5 +1,4 @@
 import React from 'react'
-import '../style/orders.css'
 import { IoReload } from "react-icons/io5";
 import { BsTelephoneFill } from "react-icons/bs";
 import { TfiLocationPin } from "react-icons/tfi";

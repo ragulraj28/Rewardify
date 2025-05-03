@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../style/Transaction.css';
 import { IoReload } from "react-icons/io5";
 import AllTransaction from './AllTransaction';
 import { transactiondetails } from "../utils/allTransactiondetails";

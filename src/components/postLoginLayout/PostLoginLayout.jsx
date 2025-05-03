@@ -1,7 +1,6 @@
 import { Outlet } from "react-router"
 import Head from "../dashboard/component/Head"
 import SideBar from "../dashboard/component/SideBar"
-import './PostLoginLayout.css'
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import api from "../../utils/axios/axios"
