@@ -69,8 +69,16 @@ api.interceptors.response.use(
                 localStorage.setItem("accessToken", newAccessToken);
 
                 // Retry original request with new access token
-                originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
-                return api(originalRequest);
+                const updatedRequest = {
+                    ...originalRequest,
+                    headers: {
+                        ...originalRequest.headers,
+                        Authorization: `Bearer ${newAccessToken}`,
+                    },
+                };
+
+                return api(updatedRequest);
+
             } catch (refreshError) {
                 console.error("Refresh token failed", refreshError);
                 store.dispatch(logout());
