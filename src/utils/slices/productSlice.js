@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   allProducts: [],
-  stockProducts: localStorage.getItem('stockProducts') ? JSON.parse(localStorage.getItem('stockProducts')) : [],
+  stockProducts: localStorage.getItem("stockProducts")
+    ? JSON.parse(localStorage.getItem("stockProducts"))
+    : [],
   selectedProduct: null,
 };
 
@@ -18,7 +20,11 @@ const productSlice = createSlice({
     },
     addToStockProducts: (state, action) => {
       state.stockProducts = [...state.stockProducts, action.payload];
-      localStorage.setItem("stockProducts", JSON.stringify(state.stockProducts));
+      localStorage.setItem(
+        "stockProducts",
+        JSON.stringify(state.stockProducts)
+      );
+      state.selectedProduct = null;
     },
     updatePricing: (state, action) => {
       const {
@@ -43,7 +49,10 @@ const productSlice = createSlice({
           productPrice,
         };
       }
-      localStorage.setItem("stockProducts", JSON.stringify(state.stockProducts));
+      localStorage.setItem(
+        "stockProducts",
+        JSON.stringify(state.stockProducts)
+      );
       state.selectedProduct = null;
     },
     updateavAvailability(state, action) {
@@ -55,7 +64,10 @@ const productSlice = createSlice({
           : product
       );
       state.stockProducts = updatedProducts;
-      localStorage.setItem("stockProducts", JSON.stringify(state.stockProducts));
+      localStorage.setItem(
+        "stockProducts",
+        JSON.stringify(state.stockProducts)
+      );
       state.selectedProduct = null;
     },
     updateQuantity(state, action) {
@@ -71,7 +83,10 @@ const productSlice = createSlice({
           : product
       );
       state.stockProducts = updatedProducts;
-      localStorage.setItem("stockProducts", JSON.stringify(state.stockProducts));
+      localStorage.setItem(
+        "stockProducts",
+        JSON.stringify(state.stockProducts)
+      );
       // state.selectedProduct = null;
     },
     deleteQuantity(state, action) {
@@ -87,7 +102,10 @@ const productSlice = createSlice({
           : product
       );
       state.stockProducts = updatedProducts;
-      localStorage.setItem("stockProducts", JSON.stringify(state.stockProducts));
+      localStorage.setItem(
+        "stockProducts",
+        JSON.stringify(state.stockProducts)
+      );
       // state.selectedProduct = null;
     },
     deleteStockProduct(state, action) {
@@ -95,7 +113,10 @@ const productSlice = createSlice({
         (product) => product.productName !== action.payload
       );
       state.stockProducts = updatedProducts;
-      localStorage.setItem("stockProducts", JSON.stringify(state.stockProducts));
+      localStorage.setItem(
+        "stockProducts",
+        JSON.stringify(state.stockProducts)
+      );
       // state.selectedProduct = null;
     },
   },
