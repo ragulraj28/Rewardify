@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import bgImage from "../../../assets/login-background.svg";
+import bgImage from "../../../assets/login-background.webp";
 import LoginCard from "./LoginCard";
 import logo from "../../../assets/rewardify-logo.svg";
 import store_logo from "../../../assets/store.svg";
