@@ -132,7 +132,7 @@ const EditProductForm = () => {
                 </div>
               </div>
               <div className="product-details-form-col relative">
-                <div class="product-details-search-icon-container">
+                <div className="product-details-search-icon-container">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"

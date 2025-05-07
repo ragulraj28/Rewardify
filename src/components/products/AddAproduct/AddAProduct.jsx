@@ -28,8 +28,6 @@ const AddAProduct = ({}) => {
 
   const onSubmit = (data) => {
     const values = getValues();
-    console.log("Submitted:", data);
-    console.log(stockProducts);
     const productExists = stockProducts.some(
       (product) => product.productName === data.productName
     );
@@ -42,7 +40,6 @@ const AddAProduct = ({}) => {
       navigate("/products");
     }
     // dispatch(addToStockProducts(data));
-    console.log("product Description: ", values.productDescription);
     // dispatch(selectProduct(null));
     // navigate("/products");
   };

@@ -3,7 +3,7 @@
 }
 
 .product-listing-table {
-    @apply flex items-center
+    @apply flex items-center;
 }
 
 .table-productname-headerleft {

@@ -8,7 +8,6 @@ const AddStock = ({ handleHidePopup }) => {
   const dispatch = useDispatch();
   const [action, setAction] = useState("");
 
-  console.log("Addstock", currentProduct);
   function handleAddStock() {
     dispatch(
       updateQuantity({
@@ -17,7 +16,6 @@ const AddStock = ({ handleHidePopup }) => {
       })
     );
     handleHidePopup();
-    console.log(currentProduct.productName);
   }
   return (
     <div className="w-[100%] h-[100%] flex items-center justify-center ">

@@ -156,10 +156,10 @@ const Products = () => {
               </div>
               <div
                 className={`space-y-4  ${
-                  isOpen === category ? "block overflow-x-auto" : "hidden"
+                  isOpen === category ? "block" : "hidden"
                 }`}
               >
-                <div className="product-listing-tablecontainer min-w-[856px] hidden md:block">
+                <div className="product-listing-tablecontainer hidden xl:block">
                   <div className="product-listing-table ">
                     <div className="table-productname-headerleft text-tertiary">
                       <h3 className="text-tertiary">Product Name</h3>
@@ -181,10 +181,9 @@ const Products = () => {
                   </div>
                 </div>
                 {groupedProducts[category].map((product) => (
-                  <div>
+                  <div key={product.productName} className="pb-5 last:pb-0 border-b last:border-none border-border-color">
                     <div
-                      key={product.productName}
-                      className="py-4 rounded-md min-w-[856px] hidden md:block"
+                      className="py-4 rounded-md hidden xl:block"
                     >
                       <div className="product-listing-table">
                         <div className="table-productname-headerleft ">
@@ -267,7 +266,7 @@ const Products = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="product-listing-tablecontainer  w-full md:hidden flex px-[5px] py-[8px] inset-shadow-sm shadow-indigo-500 shadow-green-50">
+                    <div className="product-listing-tablecontainer  w-full xl:hidden flex px-[5px] py-3">
                       <div className="product-listing-table flex-wrap gap-[5px] items-middle ">
                         <div className=" text-tertiary basis-full flex gap-[8px] mt-[3px]">
                           <h3 className="text-tertiary ">Product Name</h3>

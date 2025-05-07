@@ -17,7 +17,6 @@ const NoProducts = () => {
       `https://rewardify.dotcod.in/api/v1/store-user/master/products/list`
     );
     const data = await res.json();
-    console.log(data);
   };
   return (
     <div className="noproducts">

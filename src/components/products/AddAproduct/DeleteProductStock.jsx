@@ -6,12 +6,9 @@ import { DeleteIcon } from "../../../assets/icons/icon";
 const DeleteProductStock = ({ handleHidePopup }) => {
   const currentProduct = useSelector((state) => state.products.selectedProduct);
   const dispatch = useDispatch();
-
-  console.log("DeleteStock", currentProduct);
   function handleDeleteStock() {
     dispatch(deleteStockProduct(currentProduct.productName));
     handleHidePopup();
-    console.log(currentProduct.productName);
   }
   return (
     <div className="w-[100%] h-[100%] flex items-center justify-center ">
