@@ -1,5 +1,5 @@
 .products {
-    @apply bg-white rounded-[12px] px-[40px] py-[24px]
+    @apply bg-white rounded-[12px] px-[20px] md:px-[40px] py-[24px]
 }
 
 .product-listing-table {
